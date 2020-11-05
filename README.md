@@ -4,7 +4,7 @@ The Open Policy Agent (OPA, pronounced “oh-pa”) is an open source, general-p
 The policies are written in a language called [rego](https://www.openpolicyagent.org/docs/latest/policy-language/). You can find examples of policies for different technologies [here](https://github.com/open-policy-agent/conftest/tree/master/examples).
 
 ## Structure
-Each type will have it's own folder (and namespace) inside of [policy](policy). If you want to add a new type, you can refer to [policy/docker](policy/docker).
+Each type will have its own folder (and namespace) inside of [policy](policy). If you want to add a new type, you can refer to [policy/docker](policy/docker).
 
 ## How to use it
 [conftest](https://www.conftest.dev/) is a utility to help you write tests against structured configuration data. For instance, you could write tests for your Kubernetes configurations, Tekton pipeline definitions, Terraform code, Serverless configs or any other structured data.
