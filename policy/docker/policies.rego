@@ -69,8 +69,7 @@ deny[msg] {
 # DENY: Port number out of range - https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
 port_in_range {
     input[i].Cmd == "expose"
-    to_number(concat(" ", input[i].Value)) > 0
-    to_number(concat(" ", input[i].Value)) < 65535
+    all([to_number(concat(" ", input[i].Value)) > 0], to_number(concat(" ", input[i].Value)) < 65535)
 }
 deny[msg] {
     input[i].Cmd == "expose"
