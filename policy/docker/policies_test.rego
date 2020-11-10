@@ -23,13 +23,11 @@ basic_dockerfile := [
 ]
 
 test_deny_no_user {
-    expected := "Please specify a USER, root is not permitted"
-    deny[expected] with input as basic_dockerfile
+    deny_no_user with input as basic_dockerfile
 }
 
 test_port_out_of_range {
-    expected := "Port number out of range (0-65535)"
-    deny[expected] with input as basic_dockerfile
+    deny_port_out_of_range with input as basic_dockerfile
 }
 
 test_avoid_curl_bashing {
@@ -54,6 +52,5 @@ test_avoid_curl_bashing {
         },
     ]
 
-    expected := "Avoid curl/wget bashing"
-    deny[expected] with input as curl_bash
+    deny_curl_bashing with input as curl_bash
 }
