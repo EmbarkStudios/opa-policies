@@ -1,7 +1,7 @@
 package terraform_gcp
 
-resource[r] {
-	input.resource[r]
+buckets[bucket] {
+	bucket = input.resource.google_storage_bucket[bucket]
 }
 
 # TODO(freddd): extract to util
@@ -15,7 +15,13 @@ string_false(v) = false {
     v == "false"
 }
 
-exists_and_true_string(obj, k) {
-    obj[k]
-    all([string_true(obj[k])])
+is_true(obj, k) = true {
+    string_true(obj[k])
+} else = true {
+    obj[k] == true
+}
+
+blacklisted_users = {
+    "allUsers",
+    "allAuthenticatedUsers",
 }

@@ -30,7 +30,7 @@ test_deny_uniform_level_access {
                 },
                 "b2": {
                     "name": "b2",
-                    "uniform_bucket_level_access": false,
+                    "uniform_bucket_level_access": "false",
                     "location": "eu",
                     "storage_class": "STANDARD"
                 },
@@ -68,6 +68,6 @@ test_deny_uniform_level_access_all {
         }
     }
 
-    deny_non_uniform_level_access["TF_GCP_01: Bucket b1 should have uniform level access"] with input as input
+    deny_non_uniform_level_access["TF_GCP_01: Bucket b2 should have uniform level access"] with input as input
 }
 

@@ -2,7 +2,10 @@
 
 |ID|Severity|Name|Framework
 |---|---|---|---|
-|TF_GCP_01|DENY|Root USER|   |
+|TF_GCP_01|DENY|Bucket without uniform_level_access|   |
+|TF_GCP_02|DENY|Bucket IAM Member allUsers & allAuthenticatedUsers|   |
+|TF_GCP_03|DENY|Bucket IAM Binding allUsers & allAuthenticatedUsers|   |
+
 
 ## Make an exception
 
