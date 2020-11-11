@@ -12,7 +12,13 @@
 
 ## Make an exception
 
-If you specify the LABEL `"embark.dev/opa-docker"="<comma separated list of ids>"` you can ignore checks for an asset.
+If you specify the LABEL `dev.embark.opa-docker=<comma separated list of ids>` you can ignore checks for an asset.
+
+Example:
+```
+FROM ubuntu:latest
+LABEL embark.dev/opa-docker=DOCKER_01,DOCKER_02
+```
 
 ## Links
 

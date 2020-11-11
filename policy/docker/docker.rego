@@ -1,5 +1,6 @@
 package docker
 
+
 is_user {
     input[i].Cmd == "user"
 }
@@ -33,7 +34,17 @@ exposes[expose] {
 	expose = input[i].Value[j]
 }
 
-labels[label] {
+labels[label_values] {
     input[i].Cmd == "label"
-    label = input[i].Value[j]
+    label_values = input[i].Value
+}
+
+contains_element(arr, elem) = true {
+  arr[_] = elem
+} else = false { true }
+
+make_exception(check) {
+    labels[_][i] == "embark.dev/opa-docker"
+    exclusions := split(labels[_][_], ",")
+    contains_element(exclusions, check)
 }
