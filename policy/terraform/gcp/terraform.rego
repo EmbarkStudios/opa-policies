@@ -21,7 +21,11 @@ is_true(obj, k) = true {
     obj[k] == true
 }
 
-blacklisted_users = {
+blacklisted_users = [
     "allUsers",
     "allAuthenticatedUsers",
-}
+]
+
+contains_element(arr, elem) = true {
+  arr[_] = elem
+} else = false { true }

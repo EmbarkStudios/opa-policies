@@ -47,6 +47,11 @@ test_deny_public_iam_member_more_members {
                     "bucket": "a bucket",
                     "role": "roles/storage.admin",
                     "members": ["allUsers", "group:test@embark.dev"]
+                },
+                "should not be blocked": {
+                    "bucket": "a bucket",
+                    "role": "roles/storage.admin",
+                    "members": ["group:test@embark.dev"]
                 }
             }
         }
