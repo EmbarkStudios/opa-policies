@@ -22,10 +22,6 @@ basic_dockerfile := [
     },
 ]
 
-test_deny_no_user {
-    deny_no_user with input as basic_dockerfile
-}
-
 test_port_out_of_range {
     deny_port_out_of_range with input as basic_dockerfile
 }

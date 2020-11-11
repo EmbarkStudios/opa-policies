@@ -2,7 +2,7 @@
 
 |ID|Severity|Name|Framework
 |---|---|---|---|
-|DOCKER_01|DENY|Root USER|   |
+|DOCKER_01|DENY|Not specifying USER|   |
 |DOCKER_02|DENY|Using root alias|   |
 |DOCKER_03|WARN|Using latest tag|   |
 |DOCKER_04|DENY|Using sudo|   |

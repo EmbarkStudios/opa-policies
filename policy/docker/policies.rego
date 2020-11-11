@@ -2,18 +2,6 @@ package docker
 
 import data.docker
 
-# References:
-# https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
-# https://cloudberry.engineering/article/dockerfile-security-best-practices/
-# https://github.com/hadolint/hadolint#rules
-
-
-# DENY(DOCKER_01): if USER is not specified in the Dockerfile it will use root implicitly
-deny_no_user[msg] {
-    not is_user
-    msg = "DOCKER_01: Please specify a USER, root is not permitted"
-}
-
 
 root_alias = [
     "root",

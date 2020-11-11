@@ -32,3 +32,8 @@ exposes[expose] {
 	input[i].Cmd == "expose"
 	expose = input[i].Value[j]
 }
+
+labels[label] {
+    input[i].Cmd == "label"
+    label = input[i].Value[j]
+}
