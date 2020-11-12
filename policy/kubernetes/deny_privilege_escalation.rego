@@ -6,9 +6,15 @@ import data.kubernetes
 # Description:
 # Links:
 #   https://kubesec.io/basics/containers-securitycontext-privileged-true/
+check01 := "K8S_01"
+
+exception[rules] {
+    make_exception(check01)
+    rules = ["privilege_escalation_in_containers"]
+}
+
 deny_privilege_escalation_in_containers[msg] {
-    id := "K8S_01"
 	kubernetes.containers[container]
 	container.securityContext.privileged
-	msg = sprintf("%s: %s in the %s %s is privileged", [id, container.name, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s in the %s %s is privileged", [check01, container.name, kubernetes.kind, kubernetes.name])
 }

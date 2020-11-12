@@ -2,17 +2,23 @@ package kubernetes
 
 import data.kubernetes
 
-# DENY(K8S_12): Specifying HostPorts
+# DENY(K8S_11): Specifying HostPorts
 # Descriptions: Don’t specify a hostPort for a Pod unless it is absolutely necessary.
 #        When you bind a Pod to a hostPort, it limits the number of places the
 #        Pod can be scheduled, because each <hostIP, hostPort, protocol> combination
 #        must be unique.
 # Links:
-#   
+#
+check11 := "K8S_11"
+
+exception[rules] {
+    make_exception(check11)
+    rules = ["specify_host_port"]
+}
+
 warn_specify_host_port[msg] {
-    id := "K8S_12"
     kubernetes.containers[container]
     container.ports[port].hostPort
     
-    msg = sprintf("%s: %s in the %s %s is specifying hostPort", [id, container.name, kubernetes.kind, kubernetes.name])
+    msg = sprintf("%s: %s in the %s %s is specifying hostPort", [check11, container.name, kubernetes.kind, kubernetes.name])
 }

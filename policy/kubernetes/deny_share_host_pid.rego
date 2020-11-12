@@ -6,9 +6,15 @@ import data.kubernetes
 # Description:
 # Links:
 #   https://kubesec.io/basics/spec-hostpid/
+check17 := "K8S_17"
+
+exception[rules] {
+    make_exception(check17)
+    rules = ["sharing_host_pid"]
+}
+
 deny_sharing_host_pid[msg] {
-    id := "K8S_17"
 	kubernetes.pods[pod]
 	pod.spec.hostPID
-	msg = sprintf("The %s %s is sharing the host PID", [kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: The %s %s is sharing the host PID", [check17, kubernetes.kind, kubernetes.name])
 }

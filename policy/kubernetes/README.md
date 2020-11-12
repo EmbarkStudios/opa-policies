@@ -20,6 +20,7 @@
 |K8S_16|DENY|Sharing Host IPC namespace|
 |K8S_17|DENY|Sharing Host PID namespace|
 |K8S_18|DENY|Sharing Host Network namespace|
+|K8S_19|DENY|Running as user id that is too low|
 
 ## Make an exception
 
