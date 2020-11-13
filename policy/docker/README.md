@@ -2,7 +2,7 @@
 
 |ID|Severity|Name|Framework
 |---|---|---|---|
-|DOCKER_01|DENY|Root USER|   |
+|DOCKER_01|DENY|Not specifying USER|   |
 |DOCKER_02|DENY|Using root alias|   |
 |DOCKER_03|WARN|Using latest tag|   |
 |DOCKER_04|DENY|Using sudo|   |
@@ -12,7 +12,13 @@
 
 ## Make an exception
 
-If you specify the LABEL `"embark.dev/opa-docker"="<comma separated list of ids>"` you can ignore checks for an asset.
+If you specify the LABEL `dev.embark.opa-docker=<comma separated list of ids>` you can ignore checks for an asset.
+
+Example:
+```
+FROM ubuntu:latest
+LABEL embark.dev/opa-docker=DOCKER_01,DOCKER_02
+```
 
 ## Links
 
