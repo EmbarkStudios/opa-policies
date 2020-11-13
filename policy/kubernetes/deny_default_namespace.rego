@@ -20,6 +20,7 @@ valid_namespace {
 }
 
 deny_default_namespace[msg] {
+    not any([is_namespace, is_clusterrole, is_clusterrolebinding])
     not valid_namespace
     msg = sprintf("%s: the %s %s is using the default namespace", [checks04, kubernetes.kind, kubernetes.name])
 }

@@ -19,6 +19,18 @@ is_pod {
 	kind = "Pod"
 }
 
+is_namespace {
+	kind == "Namespace"
+}
+
+is_clusterrole {
+	kind == "ClusterRole"
+}
+
+is_clusterrolebinding {
+	kind == "ClusterRoleBinding"
+}
+
 is_job = any([kind == "CronJob", kind == "Job"])
 
 split_image(image) = [image_name, lower(tag)] {

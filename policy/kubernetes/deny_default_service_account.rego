@@ -18,6 +18,7 @@ valid_service_account() {
     all([pod.spec.serviceAccountName != "default"]) 
 }
 deny_default_service_account[msg] {
+    any([is_workload, is_pod, is_job])
     not valid_service_account
     msg = sprintf("%s: the %s %s is using a default service account", [checks06, kubernetes.kind, kubernetes.name])
 }
