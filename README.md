@@ -12,7 +12,7 @@ Each type will have its own folder (and namespace) inside of [policy](policy). I
 You can find information on how to install conftest [here](https://www.conftest.dev/install/)
 
 ## Writing tests
-We can unit-test our policies. You can find more information on how to write tests [here](https://www.openpolicyagent.org/docs/latest/policy-testing/) and see the [tests for our Dockerfile policies](policy/docker/security_test.rego).
+We can unit-test our policies. You can find more information on how to write tests [here](https://www.openpolicyagent.org/docs/latest/policy-testing/) and see the [tests for our Dockerfile policies](policy/docker).
 
 You can run the tests by executing `conftest verify`
 
