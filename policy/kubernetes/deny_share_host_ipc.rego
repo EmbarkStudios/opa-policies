@@ -6,9 +6,15 @@ import data.kubernetes
 # Description:
 # Links:
 #   https://kubesec.io/basics/spec-hostipc/
+check16 := "K8S_16"
+
+exception[rules] {
+    make_exception(check16)
+    rules = ["sharing_host_ipc"]
+}
+
 deny_sharing_host_ipc[msg] {
-    id := "K8S_16"
 	kubernetes.pods[pod]
 	pod.spec.hostIPC
-	msg = sprintf("%s: %s %s is sharing the host IPC namespace", [id, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s %s is sharing the host IPC namespace", [check16, kubernetes.kind, kubernetes.name])
 }

@@ -6,9 +6,15 @@ import data.kubernetes
 # Description:
 # Links:
 #   https://kubesec.io/basics/containers-securitycontext-readonlyrootfilesystem-true
+check14 := "K8S_14"
+
+exception[rules] {
+    make_exception(check14)
+    rules = ["non_read_only_root_fs"]
+}
+
 deny_non_read_only_root_fs[msg]{
-    id := "K8S_14"
 	kubernetes.containers[container]
 	not container.securityContext.readOnlyRootFilesystem = true
-	msg = sprintf("%s: %s in the %s %s is not using a read only root filesystem", [id, container.name, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s in the %s %s is not using a read only root filesystem", [check14, container.name, kubernetes.kind, kubernetes.name])
 }

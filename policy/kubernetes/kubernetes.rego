@@ -68,3 +68,13 @@ dropped_capability(container, cap) {
 added_capability(container, cap) {
 	container.securityContext.capabilities.add[_] == cap
 }
+
+make_exception(check) {
+    input.metadata.annotations["embark.dev/opa-k8s"]
+	checks := split(input.metadata.annotations["embark.dev/opa-k8s"], ",")
+	contains_element(checks, check)
+}
+
+contains_element(arr, elem) = true {
+  arr[_] = elem
+} else = false { true }
