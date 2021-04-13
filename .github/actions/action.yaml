@@ -1,0 +1,10 @@
+name: "Conftest"
+description: "Running conftest verify"
+branding:
+  icon: "check"
+  color: "green"
+runs:
+  using: 'docker'
+  image: 'docker://instrumenta/conftest:v0.21.0'
+  args:
+  - verify
