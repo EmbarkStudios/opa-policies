@@ -13,7 +13,7 @@ test_deny_public_iam_member {
         }
     }
 
-    deny_public_iam_member with input as input
+    deny_public_iam_binding with input as input
 }
 
 test_not_deny_public_iam_member_when_exception {
@@ -30,7 +30,7 @@ test_not_deny_public_iam_member_when_exception {
         }
     }
 
-    not deny_public_iam_member["TF_GCP_02: public users not allowed for bucket: embark-public"] with input as input
+    not deny_public_iam_binding["TF_GCP_03: public users not allowed for bucket: embark-public"] with input as input
 }
 
 test_deny_public_iam_member_more_members {
@@ -57,5 +57,5 @@ test_deny_public_iam_member_more_members {
         }
     }
 
-    deny_public_iam_member with input as input
+    deny_public_iam_binding with input as input
 }
