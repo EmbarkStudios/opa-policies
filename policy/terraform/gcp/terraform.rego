@@ -29,3 +29,8 @@ blacklisted_users = [
 contains_element(arr, elem) = true {
   arr[_] = elem
 } else = false { true }
+
+make_exception(check, obj) {
+	checks := split(obj["//"], ",")
+	contains_element(checks, check)
+}
