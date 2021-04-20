@@ -13,7 +13,7 @@ test_not_deny_iam_policy_with_exclusions {
                             ],
                         },
                         {
-                            "//": "TF_GCP_05",
+                            "//": "TF_GCP_04",
                             "role": "roles/storage.admin",
                             "members": [
                                 "allAuthenticatedUsers",
@@ -41,7 +41,7 @@ test_not_deny_iam_policy_with_exclusions {
         },
     }
 
-    not deny_iam_policy["TF_GCP_05: public users (allAuthenticatedUsers) not allowed for policy"] with input as input
+    not deny_iam_policy["TF_GCP_04: public users (allAuthenticatedUsers) not allowed for policy"] with input as input
 }
 
 test_deny_iam_policy {
@@ -116,5 +116,5 @@ test_not_deny_iam_policy {
         },
     }
 
-   not deny_iam_policy["TF_GCP_05: public users (allUsers) not allowed for policy"] with input as input
+   not deny_iam_policy["TF_GCP_04: public users (allUsers) not allowed for policy"] with input as input
 }
