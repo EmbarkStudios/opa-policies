@@ -6,6 +6,7 @@
 |TF_GCP_02|DENY|Bucket IAM Member allUsers or allAuthenticatedUsers|   |
 |TF_GCP_03|DENY|Bucket IAM Binding allUsers or allAuthenticatedUsers|   |
 |TF_GCP_04|DENY|IAM Policy containing allUsers or allAuthenticatedUsers|   |
+|TF_GCP_05|DENY|GKE not using alias ip|   |
 
 
 ## Make an exception
