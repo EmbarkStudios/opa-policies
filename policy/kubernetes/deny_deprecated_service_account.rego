@@ -8,7 +8,7 @@ import data.kubernetes
 checks07 := "K8S_07"
 
 exception[rules] {
-    make_exception(checks06)
+    make_exception(checks07)
     rules = ["deprecated_service_account"]
 }
 
