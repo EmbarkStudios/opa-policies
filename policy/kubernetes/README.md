@@ -21,6 +21,8 @@
 |K8S_17|DENY|Sharing Host PID namespace|
 |K8S_18|DENY|Sharing Host Network namespace|
 |K8S_19|DENY|Running as user id that is too low|
+|K8S_20|WARN|Missing liveness probes|
+|K8S_21|WARN|Missing readiness probes|
 
 ## Make an exception
 
