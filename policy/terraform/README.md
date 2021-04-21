@@ -12,6 +12,8 @@
 |TF_GCP_08|DENY|BQ Table IAM Member allUsers or allAuthenticatedUsers|   |
 |TF_GCP_09|DENY|BQ Dataset IAM Binding allUsers or allAuthenticatedUsers|   |
 |TF_GCP_10|DENY|BQ Table IAM Binding allUsers or allAuthenticatedUsers|   |
+|TF_GCP_11|DENY|GCE Weak SSL policies|   |
+
 
 ## Make an exception
 
