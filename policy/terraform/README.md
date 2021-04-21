@@ -7,7 +7,7 @@
 |TF_GCP_03|DENY|Bucket IAM Binding allUsers or allAuthenticatedUsers|   |
 |TF_GCP_04|DENY|IAM Policy containing allUsers or allAuthenticatedUsers|   |
 |TF_GCP_05|DENY|GKE not using alias ip|   |
-
+|TF_GCP_06|DENY|Project having auto-created network|   |
 
 ## Make an exception
 
