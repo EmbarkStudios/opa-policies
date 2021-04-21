@@ -8,6 +8,10 @@
 |TF_GCP_04|DENY|IAM Policy containing allUsers or allAuthenticatedUsers|   |
 |TF_GCP_05|DENY|GKE not using alias ip|   |
 |TF_GCP_06|DENY|Project having auto-created network|   |
+|TF_GCP_07|DENY|BQ Dataset IAM Member allUsers or allAuthenticatedUsers|   |
+|TF_GCP_08|DENY|BQ Table IAM Member allUsers or allAuthenticatedUsers|   |
+|TF_GCP_09|DENY|BQ Dataset IAM Binding allUsers or allAuthenticatedUsers|   |
+|TF_GCP_10|DENY|BQ Table IAM Binding allUsers or allAuthenticatedUsers|   |
 
 ## Make an exception
 
