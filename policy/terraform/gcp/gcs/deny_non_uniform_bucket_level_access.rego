@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import data.terraform
+
 check01 := "TF_GCP_01"
 
 deny_non_uniform_level_access[msg] {
