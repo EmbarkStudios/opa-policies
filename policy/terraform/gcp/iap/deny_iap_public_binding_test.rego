@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import data.terraform
+
 test_deny_iap_public_binding {
     input := {
         "resource": {
@@ -28,7 +30,7 @@ test_not_deny_iap_public_binding_when_exception {
         }
     }
 
-    not deny_iap_public_binding["TF_GCP_13: public users (%s) not allowed"] with input as input
+    not deny_iap_public_binding[sprintf("TF_GCP_13: public users (%s) not allowed. More info: %s", [get_url(check13)])] with input as input
 }
 
 test_deny_iap_public_binding_more_members {

@@ -13,7 +13,7 @@
 |TF_GCP_09|DENY|BQ Dataset IAM Binding allUsers or allAuthenticatedUsers|   |
 |TF_GCP_10|DENY|BQ Table IAM Binding allUsers or allAuthenticatedUsers|   |
 |TF_GCP_11|DENY|GCE Weak SSL policies|   |
-|TF_GCP_12|DENY|IAP IAM Binding allUsers or allAuthenticatedUsers|   |
+|TF_GCP_12|DENY|IAP IAM Member allUsers or allAuthenticatedUsers|   |
 |TF_GCP_13|DENY|IAP IAM Binding allUsers or allAuthenticatedUsers|   |
 |TF_GCP_14|DENY|Firewall rule allowing unrestricted ingress|   |
 

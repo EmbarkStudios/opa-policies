@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import data.terraform
+
 test_deny_table_public_iam_binding {
     input := {
         "resource": {
@@ -32,7 +34,7 @@ test_not_deny_table_public_iam_binding_when_exception {
         }
     }
 
-    not deny_table_public_iam_binding["TF_GCP_10: public users (%s) not allowed for dataset: ds, table: x"] with input as input
+    not deny_table_public_iam_binding[sprintf("TF_GCP_10: public users (%s) not allowed for dataset: ds, table: x. More info: %s", [get_url(check10)])] with input as input
 }
 
 test_deny_table_public_iam_binding_more_members {

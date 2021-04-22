@@ -11,5 +11,5 @@ deny_iap_public_binding[msg] {
 	binding.members[member] == blacklisted_users[user]
 	not make_exception(check13, binding)
 
-	msg = sprintf("%s: public users (%s) not allowed", [check13, binding.members[member]])
+	msg = sprintf("%s: public users (%s) not allowed. More info: %s", [check13, binding.members[member], get_url(check13)])
 }

@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import data.terraform
+
 test_not_deny_iam_policy_with_exclusions {
     input := {
         "data": {
@@ -41,7 +43,7 @@ test_not_deny_iam_policy_with_exclusions {
         },
     }
 
-    not deny_iam_policy["TF_GCP_04: public users (allAuthenticatedUsers) not allowed for policy"] with input as input
+    not deny_iam_policy[sprintf("TF_GCP_04: public users (allUsers) not allowed for policy. More info: %s", [get_url(check04)])] with input as input
 }
 
 test_deny_iam_policy {
@@ -116,5 +118,5 @@ test_not_deny_iam_policy {
         },
     }
 
-   not deny_iam_policy["TF_GCP_04: public users (allUsers) not allowed for policy"] with input as input
+   not deny_iam_policy[sprintf("TF_GCP_04: public users (allUsers) not allowed for policy. More info: %s", [get_url(check04)])] with input as input
 }

@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import data.terraform
+
 test_deny_compute_firewall_unrestricted {
     input := {
         "resource": {
@@ -33,7 +35,7 @@ test_not_deny_compute_firewall_unrestricted_when_no_allow {
         }
     }
 
-    not deny_compute_firewall_unrestricted["TF_GCP_14: firewall rule: f1 is unrestricted (0.0.0.0/0)"] with input as input
+    not deny_compute_firewall_unrestricted[sprintf("TF_GCP_14: firewall rule: f1 is unrestricted (0.0.0.0/0). More info: %s", [get_url(check14)])] with input as input
 }
 
 test_not_deny_compute_firewall_unrestricted_when_exception {
@@ -52,7 +54,7 @@ test_not_deny_compute_firewall_unrestricted_when_exception {
         }
     }
 
-    not deny_compute_firewall_unrestricted["TF_GCP_14: firewall rule: f1 is unrestricted (0.0.0.0/0)"] with input as input
+    not deny_compute_firewall_unrestricted[sprintf("TF_GCP_14: firewall rule: f1 is unrestricted (0.0.0.0/0). More info: %s", [get_url(check14)])] with input as input
 }
 
 test_deny_compute_firewall_unrestricted_multiple {

@@ -11,5 +11,5 @@ deny_table_public_iam_binding[msg] {
 	binding.members[member] == blacklisted_users[user]
 	not make_exception(check10, binding)
 
-	msg = sprintf("%s: public users (%s) not allowed for dataset: %s, table: %s", [check10, binding.members[member], binding.dataset_id, binding.table_id])
+	msg = sprintf("%s: public users (%s) not allowed for dataset: %s, table: %s. More info: %s", [check10, binding.members[member], binding.dataset_id, binding.table_id, get_url(check10)])
 }
