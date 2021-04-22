@@ -11,5 +11,5 @@ deny_public_iam_binding[msg] {
 	binding.members[member] == blacklisted_users[user]
 	not make_exception(check03, binding)
 
-	msg = sprintf("%s: public users (%s) not allowed for bucket: %s", [check03, binding.members[member], binding.bucket])
+	msg = sprintf("%s: public users (%s) not allowed for bucket: %s. More info: %s", [check03, binding.members[member], binding.bucket, get_url(check03)])
 }

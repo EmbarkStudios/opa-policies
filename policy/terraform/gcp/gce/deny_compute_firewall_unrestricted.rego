@@ -13,5 +13,5 @@ deny_compute_firewall_unrestricted[msg] {
 	contains_element(f.source_ranges, "0.0.0.0/0")
 	not make_exception(check14, f)
 
-	msg = sprintf("%s: firewall rule: %s is unrestricted (0.0.0.0/0)", [check14, f.name])
+	msg = sprintf("%s: firewall rule: %s is unrestricted (0.0.0.0/0). More info: %s", [check14, f.name, get_url(check14)])
 }

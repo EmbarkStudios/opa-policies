@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import data.terraform
+
 test_deny_uniform_level_access_exception {
     input := {
         "resource": {
@@ -15,7 +17,7 @@ test_deny_uniform_level_access_exception {
         }
     }
 
-    not deny_non_uniform_level_access["TF_GCP_01: Bucket b3 should have uniform level access"] with input as input
+    not deny_non_uniform_level_access[sprintf("TF_GCP_01: Bucket b3 should have uniform level access. More info: %s", [get_url("TF_GCP_01")])] with input as input
 }
 
 test_deny_uniform_level_access {
@@ -38,7 +40,7 @@ test_deny_uniform_level_access {
         }
     }
 
-    deny_non_uniform_level_access["TF_GCP_01: Bucket b2 should have uniform level access"] with input as input
+    deny_non_uniform_level_access with input as input
 }
 
 test_deny_uniform_level_access_all {
@@ -68,6 +70,6 @@ test_deny_uniform_level_access_all {
         }
     }
 
-    deny_non_uniform_level_access["TF_GCP_01: Bucket b2 should have uniform level access"] with input as input
+    deny_non_uniform_level_access with input as input
 }
 

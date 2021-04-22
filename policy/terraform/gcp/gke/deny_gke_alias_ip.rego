@@ -11,5 +11,5 @@ deny_gke_alias_ip[msg] {
 	not input.resource.google_container_cluster[i].ip_allocation_policy
 	not make_exception(check05, cluster)
 
-	msg = sprintf("%s: alias ip not enabled for %s", [check05, cluster.name])
+	msg = sprintf("%s: alias ip not enabled for %s. More info: %s", [check05, cluster.name, get_url(check05)])
 }

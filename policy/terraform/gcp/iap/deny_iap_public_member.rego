@@ -11,5 +11,5 @@ deny_iap_public_member[msg] {
 	contains_element(blacklisted_users, member.member)
 	not make_exception(check12, member)
 
-	msg = sprintf("%s: public users (%s) not allowed", [check12, member.member])
+	msg = sprintf("%s: public users (%s) not allowed. More info: %s", [check12, member.member, get_url(check12)])
 }

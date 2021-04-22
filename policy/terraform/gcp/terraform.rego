@@ -21,3 +21,7 @@ make_exception(check, obj) {
 	checks := split(obj["//"], ",")
 	contains_element(checks, check)
 }
+
+get_url(check) = url {
+  url := sprintf("https://github.com/EmbarkStudios/opa-policies/wiki/%s", [check])
+}

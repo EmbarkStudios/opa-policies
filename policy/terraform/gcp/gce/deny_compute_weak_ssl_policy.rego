@@ -11,5 +11,5 @@ deny_compute_weak_ssl_policy[msg] {
 	not contains_element(["MODERN", "RESTRICTED"], p.profile)
 	not make_exception(check11, p)
 
-	msg = sprintf("%s: ssl policy: %s has a weak profile: %s", [check11, p.name, p.profile])
+	msg = sprintf("%s: ssl policy: %s has a weak profile: %s. More info: %s", [check11, p.name, p.profile, get_url(check11)])
 }

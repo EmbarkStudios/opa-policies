@@ -11,5 +11,5 @@ deny_table_public_iam_member[msg] {
 	contains_element(blacklisted_users, member.member)
 	not make_exception(check08, member)
 
-	msg = sprintf("%s: public users not allowed for dataset: %s, table: %s", [check08, member.dataset_id, member.table_id])
+	msg = sprintf("%s: public users not allowed for dataset: %s, table: %s. More info: %s", [check08, member.dataset_id, member.table_id, get_url(check08)])
 }

@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import data.terraform
+
 test_deny_compute_weak_ssl_policy {
     input := {
         "resource": {
@@ -28,7 +30,7 @@ test_not_deny_compute_weak_ssl_policy_when_exception {
         }
     }
 
-    not deny_compute_weak_ssl_policy["TF_GCP_11: ssl policy: p1 has a weak profile: COMPATIBLE"] with input as input
+    not deny_compute_weak_ssl_policy[sprintf("TF_GCP_11: ssl policy: p1 has a weak profile: COMPATIBLE. More info: %s", [get_url(check11)])] with input as input
 }
 
 test_deny_compute_weak_ssl_policy_multiple {

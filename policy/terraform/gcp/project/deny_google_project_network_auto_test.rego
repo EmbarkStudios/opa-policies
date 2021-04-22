@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import data.terraform
+
 test_not_deny_project_auto_created_network_with_exclusions {
     input := {
         "resource": {
@@ -13,7 +15,7 @@ test_not_deny_project_auto_created_network_with_exclusions {
         },
     }
 
-    not deny_project_auto_created_network["TF_GCP_06: auto created networks are not allowed for project p"] with input as input
+    not deny_project_auto_created_network[sprintf("TF_GCP_06: auto created networks are not allowed for project p. More info: %s", [get_url(check06)])] with input as input
 }
 
 test_deny_project_auto_created_network {
@@ -45,7 +47,7 @@ test_not_deny_project_auto_created_network {
         },
     }
 
-   not deny_project_auto_created_network["TF_GCP_06: auto created networks are not allowed for project p"] with input as input
+   not deny_project_auto_created_network[sprintf("TF_GCP_06: auto created networks are not allowed for project p. More info: %s", [get_url(check06)])] with input as input
 }
 
 test_not_deny_project_auto_created_network_string {
@@ -61,5 +63,5 @@ test_not_deny_project_auto_created_network_string {
         },
     }
 
-   not deny_project_auto_created_network["TF_GCP_06: auto created networks are not allowed for project p"] with input as input
+   not deny_project_auto_created_network[sprintf("TF_GCP_06: auto created networks are not allowed for project p. More info: %s", [get_url(check06)])] with input as input
 }

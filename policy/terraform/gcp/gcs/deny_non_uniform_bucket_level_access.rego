@@ -9,5 +9,5 @@ deny_non_uniform_level_access[msg] {
 	bucket := input.resource.google_storage_bucket[k]
 	not make_exception(check01, bucket)
 	not is_true(bucket.uniform_bucket_level_access)
-	msg = sprintf("%s: Bucket %v should have uniform level access", [check01, k])
+	msg = sprintf("%s: Bucket %v should have uniform level access. More info: %s", [check01, k, get_url(check01)])
 }
