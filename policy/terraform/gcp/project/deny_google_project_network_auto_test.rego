@@ -15,7 +15,7 @@ test_not_deny_project_auto_created_network_with_exclusions {
         },
     }
 
-    not deny_project_auto_created_network[sprintf("TF_GCP_06: auto created networks are not allowed for project p. More info: %s", [get_url(check06)])] with input as input
+    count(deny_project_auto_created_network) == 0 with input as input
 }
 
 test_deny_project_auto_created_network {
@@ -33,6 +33,22 @@ test_deny_project_auto_created_network {
     deny_project_auto_created_network with input as input
 }
 
+test_deny_project_auto_created_network_with_property {
+    input := {
+        "resource": {
+            "google_project": {
+                "p": {
+                    "name": "p",
+                    "project_id": "project_id",
+                    "auto_create_network": true
+                },
+            },
+        },
+    }
+
+    deny_project_auto_created_network with input as input
+}
+
 
 test_not_deny_project_auto_created_network {
     input := {
@@ -41,13 +57,13 @@ test_not_deny_project_auto_created_network {
                 "p": {
                     "name": "p",
                     "project_id": "project_id",
-                    "auto_created_network": false,
+                    "auto_create_network": false,
                 },
             },
         },
     }
 
-   not deny_project_auto_created_network[sprintf("TF_GCP_06: auto created networks are not allowed for project p. More info: %s", [get_url(check06)])] with input as input
+   count(deny_project_auto_created_network) == 0 with input as input
 }
 
 test_not_deny_project_auto_created_network_string {
@@ -57,11 +73,11 @@ test_not_deny_project_auto_created_network_string {
                 "p": {
                     "name": "p",
                     "project_id": "project_id",
-                    "auto_created_network": "false",
+                    "auto_create_network": "false",
                 },
             },
         },
     }
 
-   not deny_project_auto_created_network[sprintf("TF_GCP_06: auto created networks are not allowed for project p. More info: %s", [get_url(check06)])] with input as input
+   count(deny_project_auto_created_network) == 0 with input as input
 }

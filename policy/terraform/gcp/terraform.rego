@@ -4,18 +4,28 @@ buckets[bucket] {
 	bucket = input.resource.google_storage_bucket[bucket]
 }
 
-is_true(val) = true {
-    any([val == "true", val == true])
+is_false(val) = false {
+	any([val == "false", val == false])
+}
+
+is_true(val) {
+	any([val == "true", val == true])
+}
+
+has_key(x, k) {
+	_ = x[k]
 }
 
 blacklisted_users = [
-    "allUsers",
-    "allAuthenticatedUsers",
+	"allUsers",
+	"allAuthenticatedUsers",
 ]
 
-contains_element(arr, elem) = true {
-  arr[_] = elem
-} else = false { true }
+contains_element(arr, elem) {
+	arr[_] = elem
+} else = false {
+	true
+}
 
 make_exception(check, obj) {
 	checks := split(obj["//"], ",")
@@ -23,5 +33,5 @@ make_exception(check, obj) {
 }
 
 get_url(check) = url {
-  url := sprintf("https://github.com/EmbarkStudios/opa-policies/wiki/%s", [check])
+	url := sprintf("https://github.com/EmbarkStudios/opa-policies/wiki/%s", [check])
 }
