@@ -4,9 +4,15 @@ buckets[bucket] {
 	bucket = input.resource.google_storage_bucket[bucket]
 }
 
-is_true(val) = true {
-    any([val == "true", val == true])
+is_false(val) = false {
+  any([val == "false", val == false])
 }
+
+is_true(val) = true {
+  any([val == "true", val == true])
+}
+
+has_key(x, k) { _ = x[k] }
 
 blacklisted_users = [
     "allUsers",
