@@ -48,3 +48,7 @@ make_exception(check) {
     exclusions := split(labels[_][_], ",")
     contains_element(exclusions, check)
 }
+
+get_url(check) = url {
+  url := sprintf("https://github.com/EmbarkStudios/opa-policies/wiki/%s", [check])
+}

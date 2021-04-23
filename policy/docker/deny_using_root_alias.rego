@@ -19,5 +19,5 @@ exception[rules] {
 deny_root_alias[msg] {
     docker.users[user]
     lower(users[user]) == root_alias[alias]
-    msg = sprintf("%s: Please specify another USER, root (%s) is not permitted", [check02, user])
+    msg = sprintf("%s: Please specify another USER, root (%s) is not permitted. More info: %s", [check02, user, get_url(check02)])
 }
