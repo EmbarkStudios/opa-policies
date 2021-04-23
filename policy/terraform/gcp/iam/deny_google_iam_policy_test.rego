@@ -43,7 +43,7 @@ test_not_deny_iam_policy_with_exclusions {
         },
     }
 
-    not deny_iam_policy[sprintf("TF_GCP_04: public users (allUsers) not allowed for policy. More info: %s", [get_url(check04)])] with input as input
+   no_errors(deny_iam_policy) with input as input
 }
 
 test_deny_iam_policy {
@@ -118,5 +118,5 @@ test_not_deny_iam_policy {
         },
     }
 
-   not deny_iam_policy[sprintf("TF_GCP_04: public users (allUsers) not allowed for policy. More info: %s", [get_url(check04)])] with input as input
+   no_errors(deny_iam_policy) with input as input
 }

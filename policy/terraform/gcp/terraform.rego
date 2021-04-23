@@ -12,8 +12,18 @@ is_true(val) {
 	any([val == "true", val == true])
 }
 
-has_key(x, k) {
-	_ = x[k]
+has_key(obj, k) {
+	_ = obj[k]
+}
+
+no_errors(target) {
+	count(target) == 0
+}
+
+not_existing_or_true(obj, k) {
+	not has_key(obj, k)
+} else {
+	is_true(obj.k)
 }
 
 blacklisted_users = [

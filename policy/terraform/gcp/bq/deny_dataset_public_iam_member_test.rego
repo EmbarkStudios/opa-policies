@@ -32,7 +32,7 @@ test_not_deny_dataset_public_iam_member_when_exception {
         }
     }
 
-    not deny_dataset_public_iam_member[sprintf("TF_GCP_07: public users not allowed for dataset: ds. More info: %s", [get_url(check07)])] with input as input
+    no_errors(deny_dataset_public_iam_member) with input as input
 }
 
 test_deny_dataset_public_iam_member_more_members {
