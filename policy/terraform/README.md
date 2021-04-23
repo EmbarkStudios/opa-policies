@@ -16,6 +16,8 @@
 |TF_GCP_12|DENY|IAP IAM Member allUsers or allAuthenticatedUsers|   |
 |TF_GCP_13|DENY|IAP IAM Binding allUsers or allAuthenticatedUsers|   |
 |TF_GCP_14|DENY|Firewall rule allowing unrestricted ingress|   |
+|TF_GCP_15|DENY|Org IAM Member Default service accounts on org level|   |
+|TF_GCP_16|DENY|Org IAM Binding Default service accounts on org level|   |
 
 
 ## Make an exception

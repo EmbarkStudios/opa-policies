@@ -31,6 +31,8 @@ blacklisted_users = [
 	"allAuthenticatedUsers",
 ]
 
+default_service_account_regexp = ".*-compute@developer.gserviceaccount.com|.*@appspot.gserviceaccount.com|.*@cloudbuild.gserviceaccount.com"
+
 contains_element(arr, elem) {
 	arr[_] = elem
 } else = false {
