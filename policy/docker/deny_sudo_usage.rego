@@ -13,5 +13,5 @@ exception[rules] {
 deny_sudo_usage[msg] {
     docker.runs[run]
     contains(lower(run), "sudo")
-    msg = sprintf("%s: Avoid using 'sudo' command (%s)", [check04, run])
+    msg = sprintf("%s: Avoid using 'sudo' command (%s). More info: %s", [check04, run, get_url(check04)])
 }
