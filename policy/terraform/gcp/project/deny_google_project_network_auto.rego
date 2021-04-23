@@ -14,7 +14,7 @@ deny_project_auto_created_network[msg] {
 	msg = sprintf("%s: auto created networks are not allowed for project %s. More info: %s", [check06, p.name, get_url(check06)])
 }
 
-not_existing_or_true(p) = true {
+not_existing_or_true(p) {
 	not has_key(p, "auto_create_network")
 } else {
 	is_true(p.auto_create_network)
