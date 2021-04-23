@@ -17,7 +17,7 @@ test_deny_uniform_level_access_exception {
         }
     }
 
-    not deny_non_uniform_level_access[sprintf("TF_GCP_01: Bucket b3 should have uniform level access. More info: %s", [get_url("TF_GCP_01")])] with input as input
+    no_errors(deny_non_uniform_level_access) with input as input
 }
 
 test_deny_uniform_level_access {

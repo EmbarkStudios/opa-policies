@@ -32,7 +32,7 @@ test_not_deny_bucket_public_iam_member_when_exception {
         }
     }
 
-    not deny_bucket_public_iam_member[sprintf("TF_GCP_02: public users not allowed for bucket: embark-public. More info: %s", [get_url(check02)])] with input as input
+    no_errors(deny_bucket_public_iam_member) with input as input
 }
 
 test_deny_bucket_public_iam_member_more_members {

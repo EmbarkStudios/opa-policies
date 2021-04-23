@@ -15,7 +15,7 @@ test_not_deny_project_auto_created_network_with_exclusions {
         },
     }
 
-    count(deny_project_auto_created_network) == 0 with input as input
+    no_errors(deny_project_auto_created_network) with input as input
 }
 
 test_deny_project_auto_created_network {
@@ -63,7 +63,7 @@ test_not_deny_project_auto_created_network {
         },
     }
 
-   count(deny_project_auto_created_network) == 0 with input as input
+   no_errors(deny_project_auto_created_network) with input as input
 }
 
 test_not_deny_project_auto_created_network_string {
@@ -79,5 +79,5 @@ test_not_deny_project_auto_created_network_string {
         },
     }
 
-   count(deny_project_auto_created_network) == 0 with input as input
+   no_errors(deny_project_auto_created_network) with input as input
 }

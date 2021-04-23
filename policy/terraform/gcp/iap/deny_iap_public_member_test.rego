@@ -30,7 +30,7 @@ test_not_deny_iap_public_member_when_exception {
         }
     }
 
-    not deny_iap_public_member[sprintf("TF_GCP_12: public users (%s) not allowed. More info: %s", [get_url(check12)])] with input as input
+    no_errors(deny_iap_public_member) with input as input
 }
 
 test_deny_iap_public_member_more_members {

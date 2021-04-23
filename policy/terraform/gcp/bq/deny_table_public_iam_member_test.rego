@@ -34,7 +34,7 @@ test_not_deny_table_public_iam_member_when_exception {
         }
     }
 
-    not deny_table_public_iam_member[sprintf("TF_GCP_08: public users not allowed for dataset: ds, table: t. More info: %s", [get_url(check08)])] with input as input
+    no_errors(deny_table_public_iam_member) with input as input
 }
 
 test_deny_table_public_iam_member_more_members {
