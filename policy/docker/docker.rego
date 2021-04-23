@@ -1,12 +1,11 @@
 package docker
 
-
 is_user {
-    input[i].Cmd == "user"
+	input[i].Cmd == "user"
 }
 
 command[cmd] {
-    cmd = input[i]
+	cmd = input[i]
 }
 
 froms[from] {
@@ -15,7 +14,7 @@ froms[from] {
 }
 
 runs[run] {
-    input[i].Cmd == "run"
+	input[i].Cmd == "run"
 	run = input[i].Value[j]
 }
 
@@ -35,20 +34,22 @@ exposes[expose] {
 }
 
 labels[label_values] {
-    input[i].Cmd == "label"
-    label_values = input[i].Value
+	input[i].Cmd == "label"
+	label_values = input[i].Value
 }
 
-contains_element(arr, elem) = true {
-  arr[_] = elem
-} else = false { true }
+contains_element(arr, elem) {
+	arr[_] = elem
+} else = false {
+	true
+}
 
 make_exception(check) {
-    labels[_][i] == "embark.dev/opa-docker"
-    exclusions := split(labels[_][_], ",")
-    contains_element(exclusions, check)
+	labels[_][i] == "embark.dev/opa-docker"
+	exclusions := split(labels[_][_], ",")
+	contains_element(exclusions, check)
 }
 
 get_url(check) = url {
-  url := sprintf("https://github.com/EmbarkStudios/opa-policies/wiki/%s", [check])
+	url := sprintf("https://github.com/EmbarkStudios/opa-policies/wiki/%s", [check])
 }
