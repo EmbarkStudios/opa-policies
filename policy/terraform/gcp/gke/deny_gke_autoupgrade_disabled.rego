@@ -4,7 +4,7 @@ import data.terraform
 
 check19 := "TF_GCP_19"
 
-# DENY(TF_GCP_20) - google_container_node_pool
+# DENY(TF_GCP_19) - google_container_node_pool
 deny_gke_autoupgrade_disabled[msg] {
 	input.resource.google_container_node_pool
 	node_pool := input.resource.google_container_node_pool[i]
