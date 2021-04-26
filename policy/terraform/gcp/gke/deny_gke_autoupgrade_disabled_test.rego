@@ -43,9 +43,6 @@ test_deny_google_container_node_pool {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "management": {
-                      "auto_upgrade": false
-                    }
                 }           
             }
         },
