@@ -26,12 +26,11 @@ not_existing_or_true(obj, k) {
 	is_true(obj.k)
 }
 
-blacklisted_users = [
-	"allUsers",
-	"allAuthenticatedUsers",
-]
+blacklisted_users = ["allUsers", "allAuthenticatedUsers"]
 
 default_service_account_regexp = ".*-compute@developer.gserviceaccount.com|.*@appspot.gserviceaccount.com|.*@cloudbuild.gserviceaccount.com"
+
+impersonation_roles = ["roles/iam.serviceAccountTokenCreator", "roles/iam.serviceAccountUser"]
 
 contains_element(arr, elem) {
 	arr[_] = elem
