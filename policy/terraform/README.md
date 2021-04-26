@@ -18,7 +18,10 @@
 |TF_GCP_14|DENY|Firewall rule allowing unrestricted ingress|   |
 |TF_GCP_15|DENY|Org IAM Member Default service accounts on org level|   |
 |TF_GCP_16|DENY|Org IAM Binding Default service accounts on org level|   |
+|TF_GCP_17|DENY|IAM Member impersonation roles on project, folder and org |   |
+|TF_GCP_18|DENY|IAM Binding impersonation roles on project, folder and org|   |
 |TF_GCP_19|DENY|GKE auto upgrade node pool disabled|   |
+
 
 ## Make an exception
 
