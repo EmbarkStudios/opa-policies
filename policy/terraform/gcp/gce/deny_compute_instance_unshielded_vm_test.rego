@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_deny_missing_shielded_instance_config {
     input := {
@@ -13,7 +13,7 @@ test_deny_missing_shielded_instance_config {
         }
     }
 
-    error_count(deny_compute_instance_unshielded_vm, 1) with input as input
+    t.error_count(deny_compute_instance_unshielded_vm, 1) with input as input
 }
 
 test_deny_shielded_instance_config_without_secure_boot_enabled {
@@ -28,7 +28,7 @@ test_deny_shielded_instance_config_without_secure_boot_enabled {
         }
     }
 
-    error_count(deny_compute_instance_unshielded_vm, 1) with input as input
+    t.error_count(deny_compute_instance_unshielded_vm, 1) with input as input
 }
 
 test_deny_shielded_instance_config_with_secure_boot_disabled {
@@ -45,7 +45,7 @@ test_deny_shielded_instance_config_with_secure_boot_disabled {
         }
     }
 
-    error_count(deny_compute_instance_unshielded_vm, 1) with input as input
+    t.error_count(deny_compute_instance_unshielded_vm, 1) with input as input
 }
 
 test_deny_shielded_instance_config_with_secure_boot_disabled_string {
@@ -62,7 +62,7 @@ test_deny_shielded_instance_config_with_secure_boot_disabled_string {
         }
     }
 
-    error_count(deny_compute_instance_unshielded_vm, 1) with input as input
+    t.error_count(deny_compute_instance_unshielded_vm, 1) with input as input
 }
 
 test_not_deny_with_exception {
@@ -89,7 +89,7 @@ test_not_deny_with_exception {
         }
     }
 
-    no_errors(deny_compute_instance_unshielded_vm) with input as input
+    t.no_errors(deny_compute_instance_unshielded_vm) with input as input
 }
 
 test_not_deny_secure_boot_enabled {
@@ -114,5 +114,5 @@ test_not_deny_secure_boot_enabled {
         }
     }
 
-    no_errors(deny_compute_instance_unshielded_vm) with input as input
+    t.no_errors(deny_compute_instance_unshielded_vm) with input as input
 }

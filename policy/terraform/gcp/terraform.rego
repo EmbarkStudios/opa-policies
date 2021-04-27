@@ -20,14 +20,6 @@ has_errors(target) {
 	count(target) > 0
 }
 
-error_count(target, c) {
-	count(target) == c
-}
-
-no_errors(target) {
-	count(target) == 0
-}
-
 not_existing_or_true(obj, k) {
 	not has_key(obj, k)
 } else {

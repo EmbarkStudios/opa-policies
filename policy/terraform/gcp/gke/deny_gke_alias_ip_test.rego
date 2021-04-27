@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_not_deny_google_container_cluster {
     input := {
@@ -18,7 +18,7 @@ test_not_deny_google_container_cluster {
         },
     }
 
-    no_errors(deny_gke_alias_ip) with input as input
+    t.no_errors(deny_gke_alias_ip) with input as input
 }
 
 test_not_deny_google_container_cluster_with_exclusions {
@@ -34,7 +34,7 @@ test_not_deny_google_container_cluster_with_exclusions {
         },
     }
 
-    no_errors(deny_gke_alias_ip) with input as input
+    t.no_errors(deny_gke_alias_ip) with input as input
 }
 
 test_deny_google_container_cluster {
@@ -49,5 +49,5 @@ test_deny_google_container_cluster {
         },
     }
 
-    error_count(deny_gke_alias_ip, 1) with input as input
+    t.error_count(deny_gke_alias_ip, 1) with input as input
 }

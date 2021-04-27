@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_deny_compute_weak_ssl_policy {
     input := {
@@ -14,7 +14,7 @@ test_deny_compute_weak_ssl_policy {
         }
     }
 
-    error_count(deny_compute_weak_ssl_policy, 1) with input as input
+    t.error_count(deny_compute_weak_ssl_policy, 1) with input as input
 }
 
 test_not_deny_compute_weak_ssl_policy_when_exception {
@@ -30,7 +30,7 @@ test_not_deny_compute_weak_ssl_policy_when_exception {
         }
     }
 
-    no_errors(deny_compute_weak_ssl_policy) with input as input
+    t.no_errors(deny_compute_weak_ssl_policy) with input as input
 }
 
 test_deny_compute_weak_ssl_policy_multiple {
@@ -58,5 +58,5 @@ test_deny_compute_weak_ssl_policy_multiple {
         }
     }
 
-    error_count(deny_compute_weak_ssl_policy, 1) with input as input
+    t.error_count(deny_compute_weak_ssl_policy, 1) with input as input
 }

@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_not_deny_iam_policy_with_exclusions {
     input := {
@@ -43,7 +43,7 @@ test_not_deny_iam_policy_with_exclusions {
         },
     }
 
-   no_errors(deny_iam_policy) with input as input
+   t.no_errors(deny_iam_policy) with input as input
 }
 
 test_deny_iam_policy {
@@ -80,7 +80,7 @@ test_deny_iam_policy {
         },
     }
 
-    error_count(deny_iam_policy, 1) with input as input
+    t.error_count(deny_iam_policy, 1) with input as input
 }
 
 
@@ -118,5 +118,5 @@ test_not_deny_iam_policy {
         },
     }
 
-   no_errors(deny_iam_policy) with input as input
+   t.no_errors(deny_iam_policy) with input as input
 }

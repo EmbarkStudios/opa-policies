@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_deny_compute_firewall_unrestricted {
     input := {
@@ -17,7 +17,7 @@ test_deny_compute_firewall_unrestricted {
         }
     }
 
-    error_count(deny_compute_firewall_unrestricted, 1) with input as input
+    t.error_count(deny_compute_firewall_unrestricted, 1) with input as input
 }
 
 test_not_deny_compute_firewall_unrestricted_when_no_allow {
@@ -35,7 +35,7 @@ test_not_deny_compute_firewall_unrestricted_when_no_allow {
         }
     }
 
-    no_errors(deny_compute_firewall_unrestricted) with input as input
+    t.no_errors(deny_compute_firewall_unrestricted) with input as input
 }
 
 test_not_deny_compute_firewall_unrestricted_when_exception {
@@ -54,7 +54,7 @@ test_not_deny_compute_firewall_unrestricted_when_exception {
         }
     }
 
-    no_errors(deny_compute_firewall_unrestricted) with input as input
+    t.no_errors(deny_compute_firewall_unrestricted) with input as input
 }
 
 test_deny_compute_firewall_unrestricted_multiple {
@@ -87,5 +87,5 @@ test_deny_compute_firewall_unrestricted_multiple {
         }
     }
 
-    error_count(deny_compute_firewall_unrestricted, 1) with input as input
+    t.error_count(deny_compute_firewall_unrestricted, 1) with input as input
 }
