@@ -30,7 +30,7 @@ test_deny_project_auto_created_network {
         },
     }
 
-    deny_project_auto_created_network with input as input
+    error_count(deny_project_auto_created_network, 1) with input as input
 }
 
 test_deny_project_auto_created_network_with_property {
@@ -46,7 +46,7 @@ test_deny_project_auto_created_network_with_property {
         },
     }
 
-    deny_project_auto_created_network with input as input
+    error_count(deny_project_auto_created_network, 1) with input as input
 }
 
 

@@ -80,7 +80,7 @@ test_deny_iam_policy {
         },
     }
 
-    deny_iam_policy with input as input
+    error_count(deny_iam_policy, 1) with input as input
 }
 
 

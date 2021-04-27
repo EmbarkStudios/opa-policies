@@ -14,7 +14,7 @@ test_deny_default_sa_org_binding {
         }
     }
 
-    deny_default_sa_binding_on_org_level with input as input
+    error_count(deny_default_sa_binding_on_org_level, 1) with input as input
 }
 
 test_not_deny_default_sa_org_binding_when_exception {
@@ -36,7 +36,7 @@ test_not_deny_default_sa_org_binding_when_exception {
 test_deny_default_sa_org_binding_more_members {
     input := {
         "resource": {
-            "google_organization_iam_member": {
+            "google_organization_iam_binding": {
                 "public-member": {
                     "//": "TF_GCP_16",
                     "role": "roles/iap.httpsResourceAccessor",
@@ -50,5 +50,5 @@ test_deny_default_sa_org_binding_more_members {
         }
     }
 
-    deny_default_sa_binding_on_org_level with input as input
+    error_count(deny_default_sa_binding_on_org_level, 1) with input as input
 }

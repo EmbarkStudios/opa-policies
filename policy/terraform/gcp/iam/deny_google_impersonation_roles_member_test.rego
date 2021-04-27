@@ -14,7 +14,7 @@ test_deny_impersonation_roles_org_member {
         }
     }
 
-    deny_impersonation_roles_org_member with input as input
+    error_count(deny_impersonation_roles_org_member, 1) with input as input
 }
 
 test_not_deny_impersonation_roles_org_member_when_exception {
@@ -50,5 +50,5 @@ test_deny_default_sa_org_member_more_members {
         }
     }
 
-    deny_impersonation_roles_org_member with input as input
+    error_count(deny_impersonation_roles_org_member, 1) with input as input
 }

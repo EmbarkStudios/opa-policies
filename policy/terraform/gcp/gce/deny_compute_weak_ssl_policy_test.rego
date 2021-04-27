@@ -8,13 +8,13 @@ test_deny_compute_weak_ssl_policy {
             "google_compute_ssl_policy": {
                 "p1": {
                     "name": "p1",
-                    "profile": "MODERN",
+                    "profile": "COMPATIBLE",
                 }
             }
         }
     }
 
-    deny_compute_weak_ssl_policy with input as input
+    error_count(deny_compute_weak_ssl_policy, 1) with input as input
 }
 
 test_not_deny_compute_weak_ssl_policy_when_exception {
@@ -46,6 +46,10 @@ test_deny_compute_weak_ssl_policy_multiple {
                    	"name": "p2",
                     "profile": "COMPATIBLE"
                 },
+                "modern": {
+                    "name": "p3",
+                    "profile": "MODERN"
+                },
                 "restricted": {
                     "name": "p3",
                     "profile": "RESTRICTED"
@@ -54,5 +58,5 @@ test_deny_compute_weak_ssl_policy_multiple {
         }
     }
 
-    deny_compute_weak_ssl_policy with input as input
+    error_count(deny_compute_weak_ssl_policy, 1) with input as input
 }

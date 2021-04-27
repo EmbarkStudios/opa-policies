@@ -16,7 +16,7 @@ test_deny_table_public_iam_member {
         }
     }
 
-    deny_table_public_iam_member with input as input
+    error_count(deny_table_public_iam_member, 1) with input as input
 }
 
 test_not_deny_table_public_iam_member_when_exception {
@@ -58,5 +58,5 @@ test_deny_table_public_iam_member_more_members {
         }
     }
 
-    deny_table_public_iam_member with input as input
+    error_count(deny_table_public_iam_member, 1) with input as input
 }

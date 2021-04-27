@@ -17,7 +17,7 @@ test_deny_compute_firewall_unrestricted {
         }
     }
 
-    deny_compute_firewall_unrestricted with input as input
+    error_count(deny_compute_firewall_unrestricted, 1) with input as input
 }
 
 test_not_deny_compute_firewall_unrestricted_when_no_allow {
@@ -87,5 +87,5 @@ test_deny_compute_firewall_unrestricted_multiple {
         }
     }
 
-    deny_compute_firewall_unrestricted with input as input
+    error_count(deny_compute_firewall_unrestricted, 1) with input as input
 }

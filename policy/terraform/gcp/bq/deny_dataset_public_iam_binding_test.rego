@@ -15,7 +15,7 @@ test_deny_dataset_public_iam_binding {
         }
     }
 
-    deny_dataset_public_iam_binding with input as input
+    error_count(deny_dataset_public_iam_binding, 1) with input as input
 }
 
 test_not_deny_dataset_public_iam_binding_when_exception {
@@ -59,5 +59,5 @@ test_deny_dataset_public_iam_binding_more_members {
         }
     }
 
-    deny_dataset_public_iam_binding with input as input
+    error_count(deny_dataset_public_iam_binding, 1) with input as input
 }

@@ -31,7 +31,7 @@ no_errors(target) {
 not_existing_or_true(obj, k) {
 	not has_key(obj, k)
 } else {
-	is_true(obj.k)
+	is_true(obj[k])
 }
 
 blacklisted_users = ["allUsers", "allAuthenticatedUsers"]

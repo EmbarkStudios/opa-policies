@@ -14,7 +14,7 @@ test_deny_default_sa_org_member {
         }
     }
 
-    deny_default_sa_member_on_org_level with input as input
+    error_count(deny_default_sa_member_on_org_level, 1) with input as input
 }
 
 test_not_deny_default_sa_org_member_when_exception {
@@ -50,5 +50,5 @@ test_deny_default_sa_org_member_more_members {
         }
     }
 
-    deny_default_sa_member_on_org_level with input as input
+    error_count(deny_default_sa_member_on_org_level, 1) with input as input
 }

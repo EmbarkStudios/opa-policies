@@ -49,5 +49,5 @@ test_deny_google_container_cluster {
         },
     }
 
-    deny_gke_alias_ip with input as input
+    error_count(deny_gke_alias_ip, 1) with input as input
 }

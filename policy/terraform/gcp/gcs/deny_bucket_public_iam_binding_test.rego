@@ -15,7 +15,7 @@ test_deny_public_iam_member {
         }
     }
 
-    deny_public_iam_binding with input as input
+    error_count(deny_public_iam_binding, 1) with input as input
 }
 
 test_not_deny_public_iam_member_when_exception {
@@ -59,5 +59,5 @@ test_deny_public_iam_member_more_members {
         }
     }
 
-    deny_public_iam_binding with input as input
+    error_count(deny_public_iam_binding, 1) with input as input
 }

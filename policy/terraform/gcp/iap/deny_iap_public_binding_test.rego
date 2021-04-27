@@ -14,7 +14,7 @@ test_deny_iap_public_binding {
         }
     }
 
-    deny_iap_public_binding with input as input
+    error_count(deny_iap_public_binding, 1) with input as input
 }
 
 test_not_deny_iap_public_binding_when_exception {
@@ -50,5 +50,5 @@ test_deny_iap_public_binding_more_members {
         }
     }
 
-    deny_iap_public_binding with input as input
+    error_count(deny_iap_public_binding, 1) with input as input
 }
