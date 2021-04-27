@@ -33,7 +33,11 @@ test_not_deny_google_container_node_pool_with_exclusions {
         },
     }
 
+<<<<<<< HEAD
     error_count(deny_gke_autoupgrade_disabled, 1) with input as input
+=======
+    no_errors(deny_gke_autoupgrade_disabled) with input as input
+>>>>>>> 8abee4810519a8d728d6de9946b6cdd73e8b91e8
 }
 
 test_deny_google_container_node_pool {
@@ -48,6 +52,7 @@ test_deny_google_container_node_pool {
         },
     }
 
+<<<<<<< HEAD
     error_count(deny_gke_autoupgrade_disabled, 1) with input as input
 }
 
@@ -86,3 +91,7 @@ test_deny_google_container_node_pool {
 
     error_count(deny_gke_autoupgrade_disabled, 1) with input as input
 }
+=======
+    deny_gke_autoupgrade_disabled with input as input
+}
+>>>>>>> 8abee4810519a8d728d6de9946b6cdd73e8b91e8
