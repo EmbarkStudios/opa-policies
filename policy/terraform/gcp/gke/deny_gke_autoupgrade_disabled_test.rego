@@ -33,7 +33,7 @@ test_not_deny_google_container_node_pool_with_exclusions {
         },
     }
 
-    no_errors(deny_gke_autoupgrade_disabled) with input as input
+    error_count(deny_gke_autoupgrade_disabled, 1) with input as input
 }
 
 test_deny_google_container_node_pool {
@@ -48,5 +48,41 @@ test_deny_google_container_node_pool {
         },
     }
 
-    deny_gke_autoupgrade_disabled with input as input
+    error_count(deny_gke_autoupgrade_disabled, 1) with input as input
+}
+
+test_deny_google_container_node_pool {
+    input := {
+        "resource": {
+            "google_container_node_pool": {
+                "test": {
+                    "name": "test",
+                    "location": "us-central1",
+                    "management": {
+                        "auto_upgrade": false           
+                    }
+                }
+            }
+        },
+    }
+
+    error_count(deny_gke_autoupgrade_disabled, 1) with input as input
+}
+
+test_deny_google_container_node_pool {
+    input := {
+        "resource": {
+            "google_container_node_pool": {
+                "test": {
+                    "name": "test",
+                    "location": "us-central1",
+                    "management": {
+                        "auto_upgrade": "false"           
+                    }
+                }
+            }
+        },
+    }
+
+    error_count(deny_gke_autoupgrade_disabled, 1) with input as input
 }
