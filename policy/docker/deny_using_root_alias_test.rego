@@ -1,5 +1,7 @@
 package docker
 
+import data.testing as t
+
 test_deny_root_alias {
 	input := [
 		{
@@ -25,7 +27,7 @@ test_deny_root_alias {
 		},
 	]
 
-	deny_root_alias with input as input
+	t.error_count(deny_root_alias, 1) with input as input
 }
 
 test_not_deny_root_alias {
@@ -53,5 +55,5 @@ test_not_deny_root_alias {
 		},
 	]
 
-	not deny_root_alias["DOCKER_02: Please specify another USER, root (test) is not permitted"] with input as input
+	t.no_errors(deny_root_alias) with input as input
 }

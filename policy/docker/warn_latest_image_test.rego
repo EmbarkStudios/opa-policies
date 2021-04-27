@@ -1,5 +1,7 @@
 package docker
 
+import data.testing as t
+
 test_warn_latest_image {
 	input := [
 		{
@@ -25,5 +27,5 @@ test_warn_latest_image {
 		},
 	]
 
-	warn_latest_tag with input as input
+	t.error_count(warn_latest_tag, 1) with input as input
 }

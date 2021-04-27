@@ -1,5 +1,7 @@
 package docker
 
+import data.testing as t
+
 test_deny_no_user {
 	input := [
 		{
@@ -18,5 +20,5 @@ test_deny_no_user {
 		},
 	]
 
-	deny_no_user with input as input
+	t.error_count(deny_no_user, 1) with input as input
 }

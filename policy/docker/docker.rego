@@ -15,7 +15,7 @@ froms[from] {
 
 runs[run] {
 	input[i].Cmd == "run"
-	run = input[i].Value[j]
+	run = concat(" ", input[i].Value)
 }
 
 users[user] {

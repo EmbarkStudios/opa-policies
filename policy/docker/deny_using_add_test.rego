@@ -1,5 +1,7 @@
 package docker
 
+import data.testing as t
+
 test_deny_using_add {
 	input := [
 		{
@@ -18,5 +20,5 @@ test_deny_using_add {
 		},
 	]
 
-	deny_using_add with input as input
+	t.error_count(deny_using_add, 1) with input as input
 }

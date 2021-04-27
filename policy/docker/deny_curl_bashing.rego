@@ -12,7 +12,6 @@ exception[rules] {
 # DENY(DOCKER_06): Avoid curl bashing, use a trusted source and verify hash
 deny_curl_bashing[msg] {
 	docker.runs[run]
-	matches := regex.find_n("(curl|wget)[^|^>]*[|>]", lower(run), -1)
-	count(matches) > 0
+	regex.match("(curl|wget).*[|>].*", lower(run))
 	msg = sprintf("%s: Avoid curl/wget bashing (%s). More info: %s", [check06, run, get_url(check06)])
 }
