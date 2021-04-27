@@ -17,7 +17,7 @@ test_not_deny_autoupgrade {
         }
     }
 
-    no_errors(deny_gke_autoupgrade_disabled) with input as input
+    t.no_errors(deny_gke_autoupgrade_disabled) with input as input
 }
 
 test_not_deny_autoupgrade_exclusions {
@@ -33,7 +33,7 @@ test_not_deny_autoupgrade_exclusions {
         }
     }
 
-    no_errors(deny_gke_autoupgrade_disabled) with input as input
+    t.no_errors(deny_gke_autoupgrade_disabled) with input as input
 }
 
 test_deny_missing_autoupgrade_config {
@@ -49,7 +49,7 @@ test_deny_missing_autoupgrade_config {
         }
     }
 
-    error_count(deny_gke_autoupgrade_disabled, 1) with input as input
+    t.error_count(deny_gke_autoupgrade_disabled, 1) with input as input
 }
 
 test_deny_autoupgrade_false {
@@ -67,7 +67,7 @@ test_deny_autoupgrade_false {
         }
     }
 
-    error_count(deny_gke_autoupgrade_disabled, 1) with input as input
+    t.error_count(deny_gke_autoupgrade_disabled, 1) with input as input
 }
 
 test_deny_autoupgrade_false_string {
@@ -85,5 +85,5 @@ test_deny_autoupgrade_false_string {
         }
     }
 
-    error_count(deny_gke_autoupgrade_disabled, 1) with input as input
+    t.error_count(deny_gke_autoupgrade_disabled, 1) with input as input
 }
