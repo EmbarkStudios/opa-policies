@@ -7,13 +7,14 @@ check19 := "TF_GCP_19"
 gke_autoupgrade_disabled(node_pool) {
 	not node_pool.management.auto_upgrade
 } else {
-	is_false(node_pool.management.auto_upgrade)
+	au := node_pool.management.auto_upgrade
+	is_false(au)
 }
 
 # DENY(TF_GCP_19) - google_container_node_pool
 deny_gke_autoupgrade_disabled[msg] {
 	input.resource.google_container_node_pool
-	node_pool := input.resource.google_container_node_pool[i]
+	node_pool := input.resource.google_container_node_pool[_]
 
 	not make_exception(check19, node_pool)
 
