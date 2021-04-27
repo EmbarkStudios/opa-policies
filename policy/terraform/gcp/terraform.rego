@@ -4,7 +4,7 @@ buckets[bucket] {
 	bucket = input.resource.google_storage_bucket[bucket]
 }
 
-is_false(val) = false {
+is_false(val) {
 	any([val == "false", val == false])
 }
 
@@ -14,6 +14,14 @@ is_true(val) {
 
 has_key(obj, k) {
 	_ = obj[k]
+}
+
+has_errors(target) {
+	count(target) > 0
+}
+
+error_count(target, c) {
+	count(target) == c
 }
 
 no_errors(target) {
