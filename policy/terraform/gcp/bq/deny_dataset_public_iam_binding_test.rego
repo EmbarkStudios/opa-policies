@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_deny_dataset_public_iam_binding {
     input := {
@@ -15,7 +15,7 @@ test_deny_dataset_public_iam_binding {
         }
     }
 
-    deny_dataset_public_iam_binding with input as input
+    t.error_count(deny_dataset_public_iam_binding, 1) with input as input
 }
 
 test_not_deny_dataset_public_iam_binding_when_exception {
@@ -32,7 +32,7 @@ test_not_deny_dataset_public_iam_binding_when_exception {
         }
     }
 
-    no_errors(deny_dataset_public_iam_binding) with input as input
+    t.no_errors(deny_dataset_public_iam_binding) with input as input
 }
 
 test_deny_dataset_public_iam_binding_more_members {
@@ -59,5 +59,5 @@ test_deny_dataset_public_iam_binding_more_members {
         }
     }
 
-    deny_dataset_public_iam_binding with input as input
+    t.error_count(deny_dataset_public_iam_binding, 1) with input as input
 }

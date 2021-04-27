@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_deny_impersonation_roles_org_member {
     input := {
@@ -16,7 +16,7 @@ test_deny_impersonation_roles_org_member {
         }
     }
 
-    deny_impersonation_roles_org_binding with input as input
+    t.error_count(deny_impersonation_roles_org_binding, 1) with input as input
 }
 
 test_not_deny_impersonation_roles_org_member_when_exception {
@@ -34,7 +34,7 @@ test_not_deny_impersonation_roles_org_member_when_exception {
         }
     }
 
-    no_errors(deny_impersonation_roles_org_binding) with input as input
+    t.no_errors(deny_impersonation_roles_org_binding) with input as input
 }
 
 test_deny_default_sa_org_member_more_members {
@@ -58,5 +58,5 @@ test_deny_default_sa_org_member_more_members {
         }
     }
 
-    deny_impersonation_roles_org_binding with input as input
+    t.error_count(deny_impersonation_roles_org_binding, 1) with input as input
 }

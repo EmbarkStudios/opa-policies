@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_deny_uniform_level_access_exception {
     input := {
@@ -17,7 +17,7 @@ test_deny_uniform_level_access_exception {
         }
     }
 
-    no_errors(deny_non_uniform_level_access) with input as input
+    t.no_errors(deny_non_uniform_level_access) with input as input
 }
 
 test_deny_uniform_level_access {
@@ -40,7 +40,7 @@ test_deny_uniform_level_access {
         }
     }
 
-    deny_non_uniform_level_access with input as input
+    t.error_count(deny_non_uniform_level_access, 1) with input as input
 }
 
 test_deny_uniform_level_access_all {
@@ -70,6 +70,6 @@ test_deny_uniform_level_access_all {
         }
     }
 
-    deny_non_uniform_level_access with input as input
+    t.error_count(deny_non_uniform_level_access, 1) with input as input
 }
 

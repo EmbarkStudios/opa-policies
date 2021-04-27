@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_deny_iap_public_binding {
     input := {
@@ -14,7 +14,7 @@ test_deny_iap_public_binding {
         }
     }
 
-    deny_iap_public_binding with input as input
+    t.error_count(deny_iap_public_binding, 1) with input as input
 }
 
 test_not_deny_iap_public_binding_when_exception {
@@ -30,7 +30,7 @@ test_not_deny_iap_public_binding_when_exception {
         }
     }
 
-    no_errors(deny_iap_public_binding) with input as input
+    t.no_errors(deny_iap_public_binding) with input as input
 }
 
 test_deny_iap_public_binding_more_members {
@@ -50,5 +50,5 @@ test_deny_iap_public_binding_more_members {
         }
     }
 
-    deny_iap_public_binding with input as input
+    t.error_count(deny_iap_public_binding, 1) with input as input
 }

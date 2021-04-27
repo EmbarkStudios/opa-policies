@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_deny_dataset_public_iam_member {
     input := {
@@ -15,7 +15,7 @@ test_deny_dataset_public_iam_member {
         }
     }
 
-    deny_dataset_public_iam_member with input as input
+    t.error_count(deny_dataset_public_iam_member, 1) with input as input
 }
 
 test_not_deny_dataset_public_iam_member_when_exception {
@@ -32,15 +32,15 @@ test_not_deny_dataset_public_iam_member_when_exception {
         }
     }
 
-    no_errors(deny_dataset_public_iam_member) with input as input
+    t.no_errors(deny_dataset_public_iam_member) with input as input
 }
 
 test_deny_dataset_public_iam_member_more_members {
     input := {
         "resource": {
-            "google_bigquery_table_iam_member": {
+            "google_bigquery_dataset_iam_member": {
                 "public-member": {
-                    "//": "TF_GCP_08",
+                    "//": "TF_GCP_07",
                     "dataset_id": "ds",
                     "role": "roles/bigquery.dataEditor",
                     "member": "allUsers"
@@ -54,5 +54,5 @@ test_deny_dataset_public_iam_member_more_members {
         }
     }
 
-    deny_dataset_public_iam_member with input as input
+    t.error_count(deny_dataset_public_iam_member, 1) with input as input
 }

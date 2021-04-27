@@ -1,6 +1,6 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_not_deny_project_auto_created_network_with_exclusions {
     input := {
@@ -15,7 +15,7 @@ test_not_deny_project_auto_created_network_with_exclusions {
         },
     }
 
-    no_errors(deny_project_auto_created_network) with input as input
+    t.no_errors(deny_project_auto_created_network) with input as input
 }
 
 test_deny_project_auto_created_network {
@@ -30,7 +30,7 @@ test_deny_project_auto_created_network {
         },
     }
 
-    deny_project_auto_created_network with input as input
+    t.error_count(deny_project_auto_created_network, 1) with input as input
 }
 
 test_deny_project_auto_created_network_with_property {
@@ -46,7 +46,7 @@ test_deny_project_auto_created_network_with_property {
         },
     }
 
-    deny_project_auto_created_network with input as input
+    t.error_count(deny_project_auto_created_network, 1) with input as input
 }
 
 
@@ -63,7 +63,7 @@ test_not_deny_project_auto_created_network {
         },
     }
 
-   no_errors(deny_project_auto_created_network) with input as input
+   t.no_errors(deny_project_auto_created_network) with input as input
 }
 
 test_not_deny_project_auto_created_network_string {
@@ -79,5 +79,5 @@ test_not_deny_project_auto_created_network_string {
         },
     }
 
-   no_errors(deny_project_auto_created_network) with input as input
+   t.no_errors(deny_project_auto_created_network) with input as input
 }
