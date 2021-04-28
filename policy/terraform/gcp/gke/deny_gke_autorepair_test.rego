@@ -29,7 +29,7 @@ test_not_deny_autorepair_exclusions {
                     "cluster":"cluster1",
                     "name": "test",
                     "location": "us-central1",
-                    "//": "TF_GCP_19" 
+                    "//": "TF_GCP_21" 
                 }
             }
         }
