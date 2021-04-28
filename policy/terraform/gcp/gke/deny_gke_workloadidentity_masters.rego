@@ -5,7 +5,7 @@ import data.terraform
 check24 := "TF_GCP_24"
 
 gke_workloadidentity_masters_disabled(cluster) {
-	not cluster.node_config.workload_metadata_config
+	not cluster.node_config.workload_metadata_config.node_metadata
 } else {
 	cluster.node_config.workload_metadata_config.node_metadata != "GKE_METADATA_SERVER"
 }
