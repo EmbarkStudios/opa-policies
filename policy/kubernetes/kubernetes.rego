@@ -5,9 +5,7 @@ namespace = input.metadata.namespace
 
 kind = input.kind
 
-is_service {
-	kind = "Service"
-}
+is_service = kind == "Service"
 
 is_workload = any([kind == "DaemonSet", 
                    kind == "Deployment",
@@ -15,21 +13,13 @@ is_workload = any([kind == "DaemonSet",
                    kind == "ReplicaSet",
                    kind == "ReplicationController"])
 
-is_pod {
-	kind = "Pod"
-}
+is_pod = kind == "Pod"
 
-is_namespace {
-	kind == "Namespace"
-}
+is_namespace = kind == "Namespace"
 
-is_clusterrole {
-	kind == "ClusterRole"
-}
+is_clusterrole = kind == "ClusterRole"
 
-is_clusterrolebinding {
-	kind == "ClusterRoleBinding"
-}
+is_clusterrolebinding = kind == "ClusterRoleBinding"
 
 is_job = any([kind == "CronJob", kind == "Job"])
 

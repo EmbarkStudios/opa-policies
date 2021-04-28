@@ -15,6 +15,6 @@ exception[rules] {
 
 deny_mounting_docker_socket[msg] {
 	kubernetes.volumes[volume]
-	volume.hostpath.path = "/var/run/docker.sock"
+	volume.hostPath.path = "/var/run/docker.sock"
 	msg = sprintf("%s: The %s %s is mounting the Docker socket", [check10, kubernetes.kind, kubernetes.name])
 }

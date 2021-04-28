@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_deny_no_service_account_name {
     input := {
         "kind": "Deployment",
@@ -24,7 +26,7 @@ test_deny_no_service_account_name {
         }
     }
 
-  deny_default_service_account with input as input
+  t.error_count(deny_default_service_account, 1) with input as input
 }
 
 test_deny_default_service_account_name {
@@ -52,5 +54,33 @@ test_deny_default_service_account_name {
         }
     }
 
-  deny_default_service_account with input as input
+  t.error_count(deny_default_service_account, 1) with input as input
+}
+
+test_allow_valid_service_account_name {
+  input := {
+        "kind": "Deployment",
+        "metadata": {
+            "name": "sample",
+            "namespace":"test",
+        },
+        "spec": {
+            "selector": {
+                "matchLabels": {
+                    "app": "app",
+                    "release": "release"
+                }
+            },
+            "template": {
+                "spec": {
+                    "securityContext": {
+                        "runAsNonRoot": true,
+                    },
+                    "serviceAccountName": "notDefault",
+                }
+            }
+        }
+    }
+
+  t.no_errors(deny_default_service_account) with input as input
 }

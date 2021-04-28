@@ -1,13 +1,21 @@
 package kubernetes
 
-test_deny_default_namespace {
-  input := {"kind": "Deployment", "metadata": { "namepace": "default" }}
+import data.testing as t
 
-  deny_default_namespace with input as input
+test_deny_default_namespace {
+  input := {"kind": "Deployment", "metadata": { "name": "test", "namespace": "default" }}
+
+  t.error_count(deny_default_namespace, 1) with input as input
 }
 
 test_deny_no_namespace {
-  input := {"kind": "Deployment", "metadata": { "name": "default" }}
+  input := {"kind": "Deployment", "metadata": { "name": "test" }}
 
-  deny_default_namespace with input as input
+  t.error_count(deny_default_namespace, 1) with input as input
+}
+
+test_allow_namespace {
+  input := {"kind": "Deployment", "metadata": { "name": "test", "namespace": "foobar" }}
+
+  t.no_errors(deny_default_namespace) with input as input
 }

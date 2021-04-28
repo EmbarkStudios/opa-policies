@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.testing as t
 
 test_deny_sharing_host_network {
   input := {
@@ -27,5 +28,5 @@ test_deny_sharing_host_network {
     }
   }
 
-  deny_sharing_host_network with input as input
+  t.error_count(deny_sharing_host_network, 1) with input as input
 }

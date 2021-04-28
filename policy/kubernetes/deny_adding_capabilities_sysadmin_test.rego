@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.testing as t
 
 test_deny_adding_capabilities_to_containers {
   input := {
@@ -23,6 +24,7 @@ test_deny_adding_capabilities_to_containers {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name": "test",
                             "image":"org/image:latest",
                             "securityContext": {
                                 "capabilities": {
@@ -36,7 +38,7 @@ test_deny_adding_capabilities_to_containers {
         }
     }
 
-  deny_adding_sysadmin_capabilities with input as input
+  t.error_count(deny_adding_sysadmin_capabilities, 1) with input as input
 }
 
 test_deny_adding_capabilities_to_init_containers {
@@ -61,10 +63,11 @@ test_deny_adding_capabilities_to_init_containers {
                     "serviceAccountName": "test",
                     "initContainers": [
                         {
+                            "name": "test",
                             "image":"org/image:latest",
                             "securityContext": {
                                 "capabilities": {
-                                    "add": ["NET_BIND_SERVICE"]
+                                    "add": ["CAP_SYS_ADMIN"]
                                 }
                             }
                         }
@@ -74,5 +77,5 @@ test_deny_adding_capabilities_to_init_containers {
         }
     }
 
-  deny_adding_sysadmin_capabilities with input as input
+  t.error_count(deny_adding_sysadmin_capabilities, 1) with input as input
 }

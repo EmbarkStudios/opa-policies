@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_deny_deployment_with_latest {
   input := {
     "kind": "Deployment",
@@ -17,6 +19,7 @@ test_deny_deployment_with_latest {
         "spec": {
           "containers": [
               {
+                  "name": "test",
                   "image":"org/image:latest"
               }
           ]
@@ -25,5 +28,5 @@ test_deny_deployment_with_latest {
     }
   }
 
-  deny_usage_of_latest_tag with input as input
+  t.error_count(deny_usage_of_latest_tag, 1) with input as input
 }

@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_warn_specify_host_port {
   input := {
     "kind": "Pod",
@@ -15,6 +17,7 @@ test_warn_specify_host_port {
       },
       "containers": [
         {
+            "name": "container",
             "image":"org/image:latest",
             "ports": [
               {
@@ -27,5 +30,5 @@ test_warn_specify_host_port {
     }
   }
 
-  warn_specify_host_port with input as input
+  t.error_count(warn_specify_host_port, 1) with input as input
 }

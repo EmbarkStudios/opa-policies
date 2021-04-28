@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_warn_memory_requests {
   input := {
         "kind": "Deployment",
@@ -22,6 +24,7 @@ test_warn_memory_requests {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -30,7 +33,7 @@ test_warn_memory_requests {
         }
     }
 
-    warn_memory_requests with input as input
+    t.error_count(warn_memory_requests, 1) with input as input
 }
 
 test_not_warn_memory_requests {
@@ -69,5 +72,5 @@ test_not_warn_memory_requests {
         }
     }
 
-    not warn_memory_requests["K8S_14: test in the Deployment sample does not have a memory requests set"] with input as input
+    t.no_errors(warn_memory_requests) with input as input
 }
