@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.testing as t
 
 test_deny_sharing_host_pid {
   input := {
@@ -16,9 +17,10 @@ test_deny_sharing_host_pid {
       },
       "template": {
         "spec": {
-          "hostPID":true,
+          "hostPID": true,
           "containers": [
             {
+              "name":"test",
               "image":"org/image:lol"
             }
           ]
@@ -27,5 +29,5 @@ test_deny_sharing_host_pid {
     }
   }
 
-  deny_sharing_host_ipc with input as input
+  t.error_count(deny_sharing_host_pid, 1) with input as input
 }

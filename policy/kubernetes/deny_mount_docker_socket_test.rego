@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_deny_socket_mount_pod {
   input := {
     "kind": "Pod",
@@ -29,7 +31,7 @@ test_deny_socket_mount_pod {
     }
   }
 
-  deny_mounting_docker_socket with input as input
+  t.error_count(deny_mounting_docker_socket, 1) with input as input
 }
 
 test_allow_socket_mount_pod {
@@ -61,7 +63,7 @@ test_allow_socket_mount_pod {
     }
   }
 
-  not deny_mounting_docker_socket["K8S_11: The Pod sample is mounting the Docker socket"] with input as input
+  t.no_errors(deny_mounting_docker_socket) with input as input
 }
 
 test_deny_socket_mount_deployment {
@@ -97,7 +99,7 @@ test_deny_socket_mount_deployment {
     }
   }
 
-  deny_mounting_docker_socket with input as input
+  t.error_count(deny_mounting_docker_socket, 1) with input as input
 }
 
 test_deny_socket_mount_job {
@@ -129,5 +131,5 @@ test_deny_socket_mount_job {
     }
   }
 
-  deny_mounting_docker_socket with input as input
+  t.error_count(deny_mounting_docker_socket, 1) with input as input
 }

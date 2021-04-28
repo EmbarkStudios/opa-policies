@@ -15,6 +15,6 @@ exception[rules] {
 
 deny_privilege_escalation_in_containers[msg] {
 	kubernetes.containers[container]
-	container.securityContext.privileged
+	container.securityContext.allowPrivilegeEscalation
 	msg = sprintf("%s: %s in the %s %s is privileged", [check01, container.name, kubernetes.kind, kubernetes.name])
 }

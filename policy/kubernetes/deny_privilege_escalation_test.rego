@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_deny_container_privilege_escalation {
   input := {
         "kind": "Deployment",
@@ -22,6 +24,7 @@ test_deny_container_privilege_escalation {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name": "test",
                             "image":"org/image:latest",
                             "securityContext": {
                                 "allowPrivilegeEscalation": true,
@@ -33,7 +36,7 @@ test_deny_container_privilege_escalation {
         }
     }
 
-  deny_privilege_escalation_in_containers with input as input
+  t.error_count(deny_privilege_escalation_in_containers, 1) with input as input
 }
 
 test_deny_init_container_privilege_escalation {
@@ -58,6 +61,7 @@ test_deny_init_container_privilege_escalation {
                     "serviceAccountName": "test",
                     "initContainers": [
                         {
+                            "name": "test",
                             "image":"org/image:latest",
                             "securityContext": {
                                 "allowPrivilegeEscalation": "true",
@@ -69,5 +73,5 @@ test_deny_init_container_privilege_escalation {
         }
     }
 
-  deny_privilege_escalation_in_containers with input as input
+  t.error_count(deny_privilege_escalation_in_containers, 1) with input as input
 }

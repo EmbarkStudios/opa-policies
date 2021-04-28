@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_warn_liveness_probes {
   input := {
         "kind": "Deployment",
@@ -22,6 +24,7 @@ test_warn_liveness_probes {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -30,7 +33,7 @@ test_warn_liveness_probes {
         }
     }
 
-    warn_liveness_probes with input as input
+    t.error_count(warn_liveness_probes, 1) with input as input
 }
 
 test_warn_liveness_probes_init_container {
@@ -55,6 +58,7 @@ test_warn_liveness_probes_init_container {
                     "serviceAccountName": "test",
                     "initContainers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -63,7 +67,7 @@ test_warn_liveness_probes_init_container {
         }
     }
 
-    warn_liveness_probes with input as input
+    t.error_count(warn_liveness_probes, 1) with input as input
 }
 
 test_not_warn_liveness_probes {
@@ -109,5 +113,5 @@ test_not_warn_liveness_probes {
         }
     }
 
-    not warn_liveness_probes["K8S_20: test in the Deployment sample does not have a liveness probe"] with input as input
+    t.no_errors(warn_liveness_probes) with input as input
 }

@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_warn_cpu_requests_in_containers {
   input := {
         "kind": "Deployment",
@@ -22,6 +24,7 @@ test_warn_cpu_requests_in_containers {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -30,7 +33,7 @@ test_warn_cpu_requests_in_containers {
         }
     }
 
-  warn_cpu_requests with input as input
+  t.error_count(warn_cpu_requests, 1) with input as input
 }
 
 test_warn_cpu_requests_in_init_containers {
@@ -55,6 +58,7 @@ test_warn_cpu_requests_in_init_containers {
                     "serviceAccountName": "test",
                     "initContainers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -63,5 +67,5 @@ test_warn_cpu_requests_in_init_containers {
         }
     }
 
-  warn_cpu_requests with input as input
+  t.error_count(warn_cpu_requests, 1) with input as input
 }

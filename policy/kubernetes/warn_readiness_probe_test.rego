@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_warn_readiness_probes {
   input := {
         "kind": "Deployment",
@@ -22,6 +24,7 @@ test_warn_readiness_probes {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -30,7 +33,7 @@ test_warn_readiness_probes {
         }
     }
 
-    warn_readiness_probes with input as input
+    t.error_count(warn_readiness_probes, 1) with input as input
 }
 
 test_warn_readiness_probes_init_container {
@@ -55,6 +58,7 @@ test_warn_readiness_probes_init_container {
                     "serviceAccountName": "test",
                     "initContainers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -63,7 +67,7 @@ test_warn_readiness_probes_init_container {
         }
     }
 
-    warn_memory_limits with input as input
+    t.error_count(warn_readiness_probes, 1) with input as input
 }
 
 test_not_warn_readiness_probes {
@@ -109,5 +113,5 @@ test_not_warn_readiness_probes {
         }
     }
 
-    not warn_readiness_probes["K8S_21: test in the Deployment sample does not have a readiness probe"] with input as input
+    t.no_errors(warn_readiness_probes) with input as input
 }

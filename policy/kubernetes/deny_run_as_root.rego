@@ -13,8 +13,9 @@ exception[rules] {
     rules = ["run_container_as_root"]
 }
 
+# TODO also check the containers security context, as that takes precedence
 deny_run_container_as_root[msg] {
-	kubernetes.containers[container]
-	not container.securityContext.runAsNonRoot = true
-	msg = sprintf("%s: %s in the %s %s is running as root", [check02, container.name, kubernetes.kind, kubernetes.name])
+	kubernetes.pods[pod]
+	not pod.spec.securityContext.runAsNonRoot
+	msg = sprintf("%s: %s %s is running as root", [check02, kubernetes.kind, kubernetes.name])
 }

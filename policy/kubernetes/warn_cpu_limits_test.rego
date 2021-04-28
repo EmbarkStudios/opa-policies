@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.testing as t
 
 test_not_warn_cpu_limits_on_container {
   input := {
@@ -36,7 +37,7 @@ test_not_warn_cpu_limits_on_container {
         }
     }
 
-    not warn_cpu_limits["Containers should have CPU limits"] with input as input
+    t.no_errors(warn_cpu_limits) with input as input
 }
 
 test_warn_cpu_limits {
@@ -61,6 +62,7 @@ test_warn_cpu_limits {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -69,7 +71,7 @@ test_warn_cpu_limits {
         }
     }
 
-    warn_cpu_limits with input as input
+    t.error_count(warn_cpu_limits, 1) with input as input
 }
 
 test_warn_cpu_limits {
@@ -94,6 +96,7 @@ test_warn_cpu_limits {
                     "serviceAccountName": "test",
                     "initContainers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -102,5 +105,5 @@ test_warn_cpu_limits {
         }
     }
 
-    warn_cpu_limits with input as input
+    t.error_count(warn_cpu_limits, 1) with input as input
 }

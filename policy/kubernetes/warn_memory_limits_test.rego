@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.testing as t
+
 test_warn_memory_limits_on_container {
   input := {
         "kind": "Deployment",
@@ -22,6 +24,7 @@ test_warn_memory_limits_on_container {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -30,7 +33,7 @@ test_warn_memory_limits_on_container {
         }
     }
 
-    warn_memory_limits with input as input
+    t.error_count(warn_memory_limits, 1) with input as input
 }
 
 test_warn_memory_limits_init_container {
@@ -55,6 +58,7 @@ test_warn_memory_limits_init_container {
                     "serviceAccountName": "test",
                     "initContainers": [
                         {
+                            "name":"test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -63,7 +67,7 @@ test_warn_memory_limits_init_container {
         }
     }
 
-    warn_memory_limits with input as input
+    t.error_count(warn_memory_limits, 1) with input as input
 }
 
 test_not_warn_memory_limits {
@@ -102,5 +106,5 @@ test_not_warn_memory_limits {
         }
     }
 
-    not warn_memory_limits["K8S_13: test in the Deployment sample does not have a memory limit set"] with input as input
+    t.no_errors(warn_memory_limits) with input as input
 }

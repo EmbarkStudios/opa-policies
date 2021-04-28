@@ -13,12 +13,15 @@ exception[rules] {
     rules = ["default_service_account"]
 }
 
-valid_service_account() {
-    kubernetes.pods[pod]
-    all([pod.spec.serviceAccountName != "default"]) 
+invalid_service_account(pod) {
+    not pod.spec.serviceAccountName
+} else {
+    sa := pod.spec.serviceAccountName
+    sa == "default"
 }
+
 deny_default_service_account[msg] {
-    any([is_workload, is_pod, is_job])
-    not valid_service_account
+    kubernetes.pods[pod]
+    any([invalid_service_account(pod)])
     msg = sprintf("%s: the %s %s is using a default service account", [checks06, kubernetes.kind, kubernetes.name])
 }

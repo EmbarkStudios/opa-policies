@@ -1,6 +1,6 @@
 package kubernetes
 
-import data.kubernetes
+import data.testing as t
 
 test_deny_non_read_only_root_fs {
   input := {
@@ -24,6 +24,7 @@ test_deny_non_read_only_root_fs {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name": "test",
                             "image":"org/image:latest",
                         }
                     ]
@@ -32,7 +33,7 @@ test_deny_non_read_only_root_fs {
         }
     }
 
-  deny_non_read_only_root_fs with input as input
+  t.error_count(deny_non_read_only_root_fs, 1) with input as input
 }
 
 test_deny_non_read_only_root_fs {
@@ -57,6 +58,7 @@ test_deny_non_read_only_root_fs {
                     "serviceAccountName": "test",
                     "containers": [
                         {
+                            "name": "test",
                             "image":"org/image:latest",
                             "securityContext": {
                                 "readOnlyRootFilesystem": "true"
@@ -68,5 +70,5 @@ test_deny_non_read_only_root_fs {
         }
     }
 
-  deny_non_read_only_root_fs with input as input
+  t.error_count(deny_non_read_only_root_fs, 1) with input as input
 }

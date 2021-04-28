@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.testing as t
 
 test_deny_managing_host_alias {
   input := {
@@ -34,5 +35,5 @@ test_deny_managing_host_alias {
     }
   }
 
-  deny_managing_host_alias with input as input
+  t.error_count(deny_managing_host_alias, 1) with input as input
 }
