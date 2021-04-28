@@ -1,5 +1,7 @@
 package docker
 
+import data.testing as t
+
 test_deny_sudo_usage {
 	input := [
 		{
@@ -18,5 +20,5 @@ test_deny_sudo_usage {
 		},
 	]
 
-	deny_sudo_usage with input as input
+	t.error_count(deny_sudo_usage, 1) with input as input
 }
