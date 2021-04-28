@@ -11,7 +11,7 @@ gke_secureboot_disabled(node_pool) {
 }
 
 # DENY(TF_GCP_22) - google_container_node_pool
-deny_gke_autorepair_disabled[msg] {
+deny_gke_secureboot_disabled[msg] {
 	input.resource.google_container_node_pool
 	node_pool := input.resource.google_container_node_pool[_]
 
