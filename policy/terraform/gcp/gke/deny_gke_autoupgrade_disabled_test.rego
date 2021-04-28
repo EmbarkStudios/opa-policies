@@ -1,12 +1,13 @@
 package terraform_gcp
 
-import data.terraform
+import data.testing as t
 
 test_not_deny_autoupgrade {
     input := {
         "resource": {
             "google_container_node_pool": {
                 "test": {
+                    "cluster":"cluster1",
                     "name": "test",
                     "location": "us-central1",
                     "management": {
@@ -25,6 +26,7 @@ test_not_deny_autoupgrade_exclusions {
         "resource": {
             "google_container_node_pool": {
                 "test": {
+                    "cluster":"cluster1",
                     "name": "test",
                     "location": "us-central1",
                     "//": "TF_GCP_19" 
@@ -41,6 +43,7 @@ test_deny_missing_autoupgrade_config {
         "resource": {
             "google_container_node_pool": {
                 "test": {
+                    "cluster":"cluster1",
                     "name": "test",
                     "location": "us-central1",
                     "management": {}
@@ -57,6 +60,7 @@ test_deny_autoupgrade_false {
         "resource": {
             "google_container_node_pool": {
                 "test": {
+                    "cluster":"cluster1",
                     "name": "test",
                     "location": "us-central1",
                     "management": {
@@ -75,6 +79,7 @@ test_deny_autoupgrade_false_string {
         "resource": {
             "google_container_node_pool": {
                 "test": {
+                    "cluster":"cluster1",
                     "name": "test",
                     "location": "us-central1",
                     "management": {
