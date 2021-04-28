@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_20): Liveness probes
@@ -17,5 +18,5 @@ warn_liveness_probes[msg] {
 	is_workload
 	kubernetes.containers[container]
 	not container.livenessProbe
-	msg = sprintf("%s: %s in the %s %s does not have a liveness probe", [check20, container.name, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s in the %s %s does not have a liveness probe. More info: %s", [check20, container.name, kubernetes.kind, kubernetes.name, l.get_url(check20)])
 }

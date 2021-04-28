@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check23 := "TF_GCP_23"
@@ -7,7 +8,7 @@ check23 := "TF_GCP_23"
 gke_secureboot_masters_disabled(cluster) {
 	not cluster.node_config.shielded_instance_config.enable_secure_boot
 } else {
-	is_false(cluster.node_config.shielded_instance_config.enable_secure_boot)
+	l.is_false(cluster.node_config.shielded_instance_config.enable_secure_boot)
 }
 
 # DENY(TF_GCP_23) - google_container_cluster
@@ -19,5 +20,5 @@ deny_gke_secureboot_masters_disabled[msg] {
 
 	gke_secureboot_masters_disabled(cluster)
 
-	msg = sprintf("%s: secure_boot not enabled for masters in cluster %s. More info: %s", [check23, cluster.name, get_url(check23)])
+	msg = sprintf("%s: secure_boot not enabled for masters in cluster %s. More info: %s", [check23, cluster.name, l.get_url(check23)])
 }

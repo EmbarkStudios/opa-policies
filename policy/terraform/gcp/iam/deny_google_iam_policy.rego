@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check04 := "TF_GCP_04"
@@ -11,5 +12,5 @@ deny_iam_policy[msg] {
 	binding.members[member] == blacklisted_users[user]
 	not make_exception(check04, binding)
 
-	msg = sprintf("%s: public users (%s) not allowed for policy. More info: %s", [check04, binding.members[member], get_url(check04)])
+	msg = sprintf("%s: public users (%s) not allowed for policy. More info: %s", [check04, binding.members[member], l.get_url(check04)])
 }

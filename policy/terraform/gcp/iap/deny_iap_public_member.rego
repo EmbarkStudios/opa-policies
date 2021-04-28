@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check12 := "TF_GCP_12"
@@ -8,8 +9,8 @@ check12 := "TF_GCP_12"
 deny_iap_public_member[msg] {
 	input.resource.google_iap_web_iam_member
 	member := input.resource.google_iap_web_iam_member[k]
-	contains_element(blacklisted_users, member.member)
+	l.contains_element(blacklisted_users, member.member)
 	not make_exception(check12, member)
 
-	msg = sprintf("%s: public users (%s) not allowed. More info: %s", [check12, member.member, get_url(check12)])
+	msg = sprintf("%s: public users (%s) not allowed. More info: %s", [check12, member.member, l.get_url(check12)])
 }

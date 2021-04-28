@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check19 := "TF_GCP_19"
@@ -8,7 +9,7 @@ gke_autoupgrade_disabled(node_pool) {
 	not node_pool.management.auto_upgrade
 } else {
 	au := node_pool.management.auto_upgrade
-	is_false(au)
+	l.is_false(au)
 }
 
 # DENY(TF_GCP_19) - google_container_node_pool
@@ -20,5 +21,5 @@ deny_gke_autoupgrade_disabled[msg] {
 
 	gke_autoupgrade_disabled(node_pool)
 
-	msg = sprintf("%s: auto_upgrade not enabled for node pool %s in cluster %s. More info: %s", [check19, node_pool.name, node_pool.cluster, get_url(check19)])
+	msg = sprintf("%s: auto_upgrade not enabled for node pool %s in cluster %s. More info: %s", [check19, node_pool.name, node_pool.cluster, l.get_url(check19)])
 }

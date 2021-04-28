@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_17):
@@ -16,5 +17,5 @@ exception[rules] {
 deny_sharing_host_pid[msg] {
 	kubernetes.pods[pod]
 	pod.spec.hostPID
-	msg = sprintf("%s: The %s %s is sharing the host PID", [check17, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: The %s %s is sharing the host PID. More info: %s", [check17, kubernetes.kind, kubernetes.name, l.get_url(check17)])
 }

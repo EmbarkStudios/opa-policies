@@ -1,5 +1,7 @@
 package docker
 
+import data.lib as l
+
 is_user {
 	input[i].Cmd == "user"
 }
@@ -38,18 +40,8 @@ labels[label_values] {
 	label_values = input[i].Value
 }
 
-contains_element(arr, elem) {
-	arr[_] = elem
-} else = false {
-	true
-}
-
 make_exception(check) {
 	labels[_][i] == "embark.dev/opa-docker"
 	exclusions := split(labels[_][_], ",")
-	contains_element(exclusions, check)
-}
-
-get_url(check) = url {
-	url := sprintf("https://github.com/EmbarkStudios/opa-policies/wiki/%s", [check])
+	l.contains_element(exclusions, check)
 }

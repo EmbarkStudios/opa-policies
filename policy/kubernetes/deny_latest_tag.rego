@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_03): Using latest leads to unpredictable behavior
@@ -16,5 +17,5 @@ exception[rules] {
 deny_usage_of_latest_tag[msg] {
     kubernetes.containers[container]
 	[image_name, "latest"] = kubernetes.split_image(container.image)
-	msg = sprintf("%s: %s in the %s %s has an image, %s, using the latest tag", [check03, container.name, kubernetes.kind, image_name, kubernetes.name])
+	msg = sprintf("%s: %s in the %s %s has an image, %s, using the latest tag. More info: %s", [check03, container.name, kubernetes.kind, image_name, kubernetes.name, l.get_url(check03)])
 }

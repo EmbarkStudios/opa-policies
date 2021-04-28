@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_10): Deny mounting Docker socket
@@ -16,5 +17,5 @@ exception[rules] {
 deny_mounting_docker_socket[msg] {
 	kubernetes.volumes[volume]
 	volume.hostPath.path = "/var/run/docker.sock"
-	msg = sprintf("%s: The %s %s is mounting the Docker socket", [check10, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: The %s %s is mounting the Docker socket. More info: %s", [check10, kubernetes.kind, kubernetes.name, l.get_url(check10)])
 }

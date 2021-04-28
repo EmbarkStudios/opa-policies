@@ -1,8 +1,9 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
-# DENY(K8S_07): 
+# DENY(K8S_07):
 # Description: Using the default service account can lead to pods being granted implicit permissions
 # serviceAccount is deprecated and serviceAccountName should be used instead
 checks07 := "K8S_07"
@@ -15,5 +16,5 @@ exception[rules] {
 deny_deprecated_service_account[msg] {
     kubernetes.pods[pod]
     pod.spec.serviceAccount
-    msg = sprintf("%s: the %s %s is using the deprecated serviceaccount, use serviceAccountName", [checks07, kubernetes.kind, kubernetes.name])
+    msg = sprintf("%s: the %s %s is using the deprecated serviceaccount, use serviceAccountName", [checks07, kubernetes.kind, kubernetes.name, l.get_url(checks07)])
 }

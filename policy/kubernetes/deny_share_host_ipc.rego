@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_16):
@@ -16,5 +17,5 @@ exception[rules] {
 deny_sharing_host_ipc[msg] {
 	kubernetes.pods[pod]
 	pod.spec.hostIPC
-	msg = sprintf("%s: %s %s is sharing the host IPC namespace", [check16, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s %s is sharing the host IPC namespace. More info: %s", [check16, kubernetes.kind, kubernetes.name, l.get_url(check16)])
 }

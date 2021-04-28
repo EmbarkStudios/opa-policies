@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check08 := "TF_GCP_08"
@@ -8,8 +9,8 @@ check08 := "TF_GCP_08"
 deny_table_public_iam_member[msg] {
 	input.resource.google_bigquery_table_iam_member
 	member := input.resource.google_bigquery_table_iam_member[k]
-	contains_element(blacklisted_users, member.member)
+	l.contains_element(blacklisted_users, member.member)
 	not make_exception(check08, member)
 
-	msg = sprintf("%s: public users not allowed for dataset: %s, table: %s. More info: %s", [check08, member.dataset_id, member.table_id, get_url(check08)])
+	msg = sprintf("%s: public users not allowed for dataset: %s, table: %s. More info: %s", [check08, member.dataset_id, member.table_id, l.get_url(check08)])
 }

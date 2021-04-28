@@ -1,5 +1,6 @@
 package docker
 
+import data.lib as l
 import data.docker
 
 check05 := "DOCKER_05"
@@ -12,5 +13,5 @@ exception[rules] {
 # DENY(DOCKER_05): Use ADD instead of COPY - https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#add-or-copy
 deny_using_add[msg] {
 	docker.adds[add]
-	msg = sprintf("%s: Use COPY instead of ADD. More info: %s", [check05, get_url(check05)])
+	msg = sprintf("%s: Use COPY instead of ADD. More info: %s", [check05, l.get_url(check05)])
 }

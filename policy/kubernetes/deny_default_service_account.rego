@@ -1,8 +1,9 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
-# DENY(K8S_06): Don't allow usage of default service account 
+# DENY(K8S_06): Don't allow usage of default service account
 # Description:
 # Links:
 # 
@@ -23,5 +24,5 @@ invalid_service_account(pod) {
 deny_default_service_account[msg] {
     kubernetes.pods[pod]
     any([invalid_service_account(pod)])
-    msg = sprintf("%s: the %s %s is using a default service account", [checks06, kubernetes.kind, kubernetes.name])
+    msg = sprintf("%s: the %s %s is using a default service account. More info: %s", [checks06, kubernetes.kind, kubernetes.name, l.get_url(checks06)])
 }

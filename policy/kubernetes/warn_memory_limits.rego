@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_12): Set Memory limits
@@ -16,5 +17,5 @@ exception[rules] {
 warn_memory_limits[msg] {
 	kubernetes.containers[container]
 	not container.resources.limits.memory
-	msg = sprintf("%s: %s in the %s %s does not have a memory limit set", [check12, container.name, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s in the %s %s does not have a memory limit set. More info: %s", [check12, container.name, kubernetes.kind, kubernetes.name, l.get_url(check12)])
 }

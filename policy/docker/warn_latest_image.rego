@@ -1,5 +1,6 @@
 package docker
 
+import data.lib as l
 import data.docker
 
 check03 := "DOCKER_03"
@@ -19,5 +20,5 @@ warn_latest_tag[msg] {
 	docker.froms[from]
 	val := split(from, ":")
 	contains(val[1], image_tag_list[_])
-	msg = sprintf("%s: Do not use latest tag with image (%s). More info: %s", [check03, from, get_url(check03)])
+	msg = sprintf("%s: Do not use latest tag with image (%s). More info: %s", [check03, from, l.get_url(check03)])
 }

@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_11): Specifying HostPorts
@@ -19,6 +20,6 @@ exception[rules] {
 warn_specify_host_port[msg] {
     kubernetes.containers[container]
     container.ports[port].hostPort
-    
-    msg = sprintf("%s: %s in the %s %s is specifying hostPort", [check11, container.name, kubernetes.kind, kubernetes.name])
+
+    msg = sprintf("%s: %s in the %s %s is specifying hostPort. More info: %s", [check11, container.name, kubernetes.kind, kubernetes.name, l.get_url(check11)])
 }
