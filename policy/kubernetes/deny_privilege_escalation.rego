@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_01): Do not allow privilege escalation
@@ -16,5 +17,5 @@ exception[rules] {
 deny_privilege_escalation_in_containers[msg] {
 	kubernetes.containers[container]
 	container.securityContext.allowPrivilegeEscalation
-	msg = sprintf("%s: %s in the %s %s is privileged", [check01, container.name, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s in the %s %s is privileged. More info: %s", [check01, container.name, kubernetes.kind, kubernetes.name, l.get_url(check01)])
 }

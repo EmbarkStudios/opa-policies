@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_04): Using the default namespace leads to unpredictable behavior
@@ -22,5 +23,5 @@ valid_namespace {
 deny_default_namespace[msg] {
     not any([is_namespace, is_clusterrole, is_clusterrolebinding])
     not valid_namespace
-    msg = sprintf("%s: the %s %s is using the default namespace", [checks04, kubernetes.kind, kubernetes.name])
+    msg = sprintf("%s: the %s %s is using the default namespace. More info: %s", [checks04, kubernetes.kind, kubernetes.name, l.get_url(checks04)])
 }

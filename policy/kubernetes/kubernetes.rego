@@ -1,5 +1,7 @@
 package kubernetes
 
+import data.lib as l
+
 name = input.metadata.name
 namespace = input.metadata.namespace
 
@@ -74,9 +76,5 @@ added_capability(container, cap) {
 make_exception(check) {
     input.metadata.annotations["embark.dev/opa-k8s"]
 	checks := split(input.metadata.annotations["embark.dev/opa-k8s"], ",")
-	contains_element(checks, check)
+	l.contains_element(checks, check)
 }
-
-contains_element(arr, elem) = true {
-  arr[_] = elem
-} else = false { true }

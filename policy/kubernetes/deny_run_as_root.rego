@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_02): force run as non-root
@@ -17,5 +18,5 @@ exception[rules] {
 deny_run_container_as_root[msg] {
 	kubernetes.pods[pod]
 	not pod.spec.securityContext.runAsNonRoot
-	msg = sprintf("%s: %s %s is running as root", [check02, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s %s is running as root. More info: %s", [check02, kubernetes.kind, kubernetes.name, l.get_url(check02)])
 }

@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_19): 
@@ -16,5 +17,5 @@ exception[rules] {
 deny_run_as_user_too_low[msg] {
 	kubernetes.containers[container]
 	to_number(container.securityContext.runAsUser) < 10000
-	msg = sprintf("%s: %s in the %s %s has a UID of less than 10000", [check19, container.name, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s in the %s %s has a UID of less than 10000. More info: %s", [check19, container.name, kubernetes.kind, kubernetes.name, l.get_url(check19)])
 }

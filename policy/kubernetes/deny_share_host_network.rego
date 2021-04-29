@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_18):
@@ -16,5 +17,5 @@ exception[rules] {
 deny_sharing_host_network[msg] {
 	kubernetes.pods[pod]
 	pod.spec.hostNetwork
-	msg = sprintf("%s: The %s %s is connected to the host network", [check18, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: The %s %s is connected to the host network. More info %s", [check18, kubernetes.kind, kubernetes.name, l.get_url(check18)])
 }

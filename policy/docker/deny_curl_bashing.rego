@@ -1,5 +1,6 @@
 package docker
 
+import data.lib as l
 import data.docker
 
 check06 := "DOCKER_06"
@@ -13,5 +14,5 @@ exception[rules] {
 deny_curl_bashing[msg] {
 	docker.runs[run]
 	regex.match("(curl|wget).*[|>].*", lower(run))
-	msg = sprintf("%s: Avoid curl/wget bashing (%s). More info: %s", [check06, run, get_url(check06)])
+	msg = sprintf("%s: Avoid curl/wget bashing (%s). More info: %s", [check06, run, l.get_url(check06)])
 }

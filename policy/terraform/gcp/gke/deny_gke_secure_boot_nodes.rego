@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check22 := "TF_GCP_22"
@@ -7,7 +8,7 @@ check22 := "TF_GCP_22"
 gke_secureboot_nodes_disabled(node_pool) {
 	not node_pool.node_config.shielded_instance_config.enable_secure_boot
 } else {
-	is_false(node_pool.node_config.shielded_instance_config.enable_secure_boot)
+	l.is_false(node_pool.node_config.shielded_instance_config.enable_secure_boot)
 }
 
 # DENY(TF_GCP_22) - google_container_node_pool
@@ -19,5 +20,5 @@ deny_gke_secureboot_nodes_disabled[msg] {
 
 	gke_secureboot_nodes_disabled(node_pool)
 
-	msg = sprintf("%s: secure_boot not enabled for node pool %s in cluster %s. More info: %s", [check22, node_pool.name, node_pool.cluster, get_url(check22)])
+	msg = sprintf("%s: secure_boot not enabled for node pool %s in cluster %s. More info: %s", [check22, node_pool.name, node_pool.cluster, l.get_url(check22)])
 }

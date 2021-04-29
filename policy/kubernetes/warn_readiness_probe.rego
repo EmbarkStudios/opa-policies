@@ -1,5 +1,6 @@
 package kubernetes
 
+import data.lib as l
 import data.kubernetes
 
 # DENY(K8S_21): Readiness probes
@@ -17,5 +18,5 @@ warn_readiness_probes[msg] {
 	is_workload
 	kubernetes.containers[container]
 	not container.readinessProbe
-	msg = sprintf("%s: %s in the %s %s does not have a readiness probe", [check21, container.name, kubernetes.kind, kubernetes.name])
+	msg = sprintf("%s: %s in the %s %s does not have a readiness probe. More info: %s", [check21, container.name, kubernetes.kind, kubernetes.name, l.get_url(check21)])
 }

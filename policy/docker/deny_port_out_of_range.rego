@@ -1,5 +1,6 @@
 package docker
 
+import data.lib as l
 import data.docker
 
 check07 := "DOCKER_07"
@@ -18,5 +19,5 @@ port_in_range {
 deny_port_out_of_range[msg] {
 	docker.exposes[expose]
 	not port_in_range
-	msg = sprintf("%s: Port number out of range (0-65535). More info: %s", [check07, get_url(check07)])
+	msg = sprintf("%s: Port number out of range (0-65535). More info: %s", [check07, l.get_url(check07)])
 }

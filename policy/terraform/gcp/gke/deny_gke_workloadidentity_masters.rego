@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check24 := "TF_GCP_24"
@@ -19,5 +20,5 @@ deny_gke_workloadidentity_masters_disabled[msg] {
 
 	gke_workloadidentity_masters_disabled(cluster)
 
-	msg = sprintf("%s: Workload Identity not enabled for masters in cluster %s. More info: %s", [check24, cluster.name, get_url(check24)])
+	msg = sprintf("%s: Workload Identity not enabled for masters in cluster %s. More info: %s", [check24, cluster.name, l.get_url(check24)])
 }
