@@ -41,7 +41,7 @@ test_deny_missing_remove_default_node_pool_config {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "remove_default_node_pool": {}
+                    "remove_default_node_pool": ""
                 }           
             }
         }
