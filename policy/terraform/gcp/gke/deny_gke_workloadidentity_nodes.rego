@@ -3,12 +3,12 @@ package terraform_gcp
 import data.terraform
 
 check25 := "TF_GCP_25"
-node_metadata := "GKE_METADATA_SERVER"
+pool_node_metadata := "GKE_METADATA_SERVER"
 
 gke_workloadidentity_nodes_disabled(node_pool) {
 	not node_pool.node_config.workload_metadata_config.node_metadata
 } else {
-	node_pool.node_config.workload_metadata_config.node_metadata != node_metadata
+	node_pool.node_config.workload_metadata_config.node_metadata != pool_node_metadata
 }
 
 # DENY(TF_GCP_25) - google_container_node_pool

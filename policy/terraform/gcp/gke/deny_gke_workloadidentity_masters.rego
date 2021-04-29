@@ -3,12 +3,12 @@ package terraform_gcp
 import data.terraform
 
 check24 := "TF_GCP_24"
-node_metadata := "GKE_METADATA_SERVER"
+cluster_node_metadata := "GKE_METADATA_SERVER"
 
 gke_workloadidentity_masters_disabled(cluster) {
 	not cluster.node_config.workload_metadata_config.node_metadata
 } else {
-	cluster.node_config.workload_metadata_config.node_metadata != node_metadata
+	cluster.node_config.workload_metadata_config.node_metadata != cluster_node_metadata
 }
 
 # DENY(TF_GCP_24) - google_container_cluster
