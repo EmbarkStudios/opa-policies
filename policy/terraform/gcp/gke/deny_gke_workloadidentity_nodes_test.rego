@@ -11,7 +11,7 @@ test_not_deny_workloadidentity_nodes {
                     "name": "test",
                     "node_config": {
                         "workload_metadata_config": {
-                          "node_metadata": "GKE_METADATA_SERVER"
+                          "node_metadata": node_metadata
                         }
                     }
                 }

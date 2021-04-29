@@ -10,7 +10,7 @@ test_not_deny_imagetype {
                     "name": "test",
                     "location": "us-central1",
                     "node_config": {
-                        "image_type": "COS"
+                        "image_type": image_type
                     }
                 }
             }

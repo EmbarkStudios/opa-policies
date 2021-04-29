@@ -3,11 +3,12 @@ package terraform_gcp
 import data.terraform
 
 check27 := "TF_GCP_27"
+image_type := "COS"
 
 gke_imagetype(cluster) {
 	not cluster.node_config.image_type
 } else {
-	cluster.node_config.image_type != "COS"
+	cluster.node_config.image_type != image_type
 }
 
 # DENY(TF_GCP_27) - google_container_cluster
