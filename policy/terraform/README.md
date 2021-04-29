@@ -21,7 +21,20 @@
 |TF_GCP_17|DENY|IAM Member impersonation roles on project, folder and org |   |
 |TF_GCP_18|DENY|IAM Binding impersonation roles on project, folder and org|   |
 |TF_GCP_19|DENY|GKE not using auto_upgrade|   |
-|TF_GCP_20|DENY|GCE not using secure boot|   |
+|TF_GCP_20|DENY|GCE not using secure_boot|   |
+|TF_GCP_21|DENY|GKE not using auto_repair|   |
+|TF_GCP_22|DENY|GKE nodes in pool not using secure_boot|   |
+|TF_GCP_23|DENY|GKE masters not using secure_boot|   |
+|TF_GCP_24|DENY|GKE Workload Identity not enabled on masters|   |
+|TF_GCP_25|DENY|GKE Workload Identity not enabled on nodes in pool|   |
+|TF_GCP_26|DENY|GKE release_channel not set to "REGULAR"|   |
+|TF_GCP_27|DENY|GKE image_type not set to "COS"|   |
+|TF_GCP_28|DENY|GKE secure_boot not set to "gke-security-groups@embark-studios.com"|   |
+|TF_GCP_29|DENY|GKE cluster not removing default node pool|   |
+
+
+
+
 
 
 ## Make an exception
