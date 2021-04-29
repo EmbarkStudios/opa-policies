@@ -29,7 +29,7 @@ test_not_deny_workloadidentity_nodes_exclusions {
                 "test": {
                     "cluster": "cluster1",                    
                     "name": "test",
-                    "//": "TF_GCP_24" 
+                    "//": "TF_GCP_25" 
                 }
             }
         }
