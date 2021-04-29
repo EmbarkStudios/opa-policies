@@ -11,7 +11,7 @@ gke_workloadidentity_nodes_disabled(node_pool) {
 }
 
 # DENY(TF_GCP_25) - google_container_node_pool
-deny_gke_workloadidentity_ondes_disabled[msg] {
+deny_gke_workloadidentity_nodes_disabled[msg] {
 	input.resource.google_container_node_pool
 	node_pool := input.resource.google_container_node_pool[_]
 
