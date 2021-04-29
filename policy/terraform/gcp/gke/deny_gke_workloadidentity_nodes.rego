@@ -17,7 +17,7 @@ deny_gke_workloadidentity_ondes_disabled[msg] {
 
 	not make_exception(check25, node_pool)
 
-	gke_workloadidentity_nodes_disabled(cluster)
+	gke_workloadidentity_nodes_disabled(node_pool)
 
 	msg = sprintf("%s: Workload Identity not enabled for node pool %s in cluster %s. More info: %s", [check25, node_pool.name, node_pool.cluster, get_url(check25)])
 }
