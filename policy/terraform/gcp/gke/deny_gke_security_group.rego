@@ -3,12 +3,11 @@ package terraform_gcp
 import data.terraform
 
 check28 := "TF_GCP_28"
-security_group := "gke-security-groups@embark-studios.com"
 
 gke_security_group(cluster) {
 	not cluster.authenticator_groups_config.security_group
 } else {
-	cluster.authenticator_groups_config.security_group != security_group
+	not regex.match("gke-security-groups@.*", cluster.authenticator_groups_config.security_group)
 }
 
 # DENY(TF_GCP_28) - google_container_cluster

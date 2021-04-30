@@ -10,7 +10,7 @@ test_not_deny_security_group {
                     "name": "test",
                     "location": "us-central1",
                     "authenticator_groups_config": {
-                        "security_group": security_group
+                        "security_group": "gke-security-groups@test.com"
                     }
                 }
             }
