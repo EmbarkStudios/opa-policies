@@ -9,7 +9,7 @@ test_not_deny_shielded_nodes {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "shielded_nodes": true
+                    "enable_shielded_nodes": true
                 }
             }
         }
@@ -41,7 +41,7 @@ test_deny_shielded_nodes_false {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "shielded_nodes": false
+                    "enable_shielded_nodes": false
                 }
             }
         }
@@ -57,7 +57,7 @@ test_deny_shielded_nodes_false_string {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "shielded_nodes": "false"
+                    "enable_shielded_nodes": "false"
                 }
             }
         }
