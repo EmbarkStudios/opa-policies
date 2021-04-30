@@ -5,7 +5,7 @@ import data.terraform
 
 check36 := "TF_GCP_36"
 
-using_default_service_account(instance) {
+instance_using_default_svc_acc(instance) {
 	not instance.service_account
 } else {
 	svc_acc := instance.service_account.email
@@ -18,7 +18,7 @@ deny_compute_instance_default_service_account[msg] {
 	instance := input.resource.google_compute_instance[_]
 	not make_exception(check36, instance)
 
-	using_default_service_account(instance)
+	instance_using_default_svc_acc(instance)
 
 	msg = sprintf("%s: compute instance: %s is using the default service account. More info: %s", [check36, instance.name, l.get_url(check36)])
 }
