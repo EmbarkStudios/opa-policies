@@ -30,7 +30,7 @@ jobs:
         release_name="$name-$tag"
         release_tar="${release_name}.tar.gz"
         mkdir "$release_name"
-        cp "." "$release_name/"
+        cp -r "policy" "$release_name/"
         cp README.md "$release_name/"
         tar czvf "$release_tar" "$release_name"
         rm -r "$release_name"
