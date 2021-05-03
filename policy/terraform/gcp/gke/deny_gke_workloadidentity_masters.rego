@@ -3,6 +3,7 @@ package terraform_gcp
 import data.terraform
 
 check24 := "TF_GCP_24"
+
 cluster_node_metadata := "GKE_METADATA_SERVER"
 
 gke_workloadidentity_masters_disabled(cluster) {

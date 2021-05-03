@@ -3,6 +3,7 @@ package terraform_gcp
 import data.terraform
 
 check27 := "TF_GCP_27"
+
 image_type := "COS"
 
 gke_imagetype(cluster) {

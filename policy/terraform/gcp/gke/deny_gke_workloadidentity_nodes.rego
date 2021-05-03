@@ -3,6 +3,7 @@ package terraform_gcp
 import data.terraform
 
 check25 := "TF_GCP_25"
+
 pool_node_metadata := "GKE_METADATA_SERVER"
 
 gke_workloadidentity_nodes_disabled(node_pool) {
