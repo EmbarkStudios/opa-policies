@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_02): force run as non-root
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check02 := "K8S_02"
 
 exception[rules] {
-    make_exception(check02)
-    rules = ["run_container_as_root"]
+	make_exception(check02)
+	rules = ["run_container_as_root"]
 }
 
 # TODO also check the containers security context, as that takes precedence

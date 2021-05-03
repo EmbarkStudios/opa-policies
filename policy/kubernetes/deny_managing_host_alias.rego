@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_15):
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check15 := "K8S_15"
 
 exception[rules] {
-    make_exception(check15)
-    rules = ["managing_host_alias"]
+	make_exception(check15)
+	rules = ["managing_host_alias"]
 }
 
 deny_managing_host_alias[msg] {

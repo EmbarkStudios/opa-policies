@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_09): Set CPU requests
 # Description:
@@ -10,9 +10,10 @@ import data.kubernetes
 check09 := "K8S_09"
 
 exception[rules] {
-    make_exception(check09)
-    rules = ["cpu_requests"]
+	make_exception(check09)
+	rules = ["cpu_requests"]
 }
+
 warn_cpu_requests[msg] {
 	kubernetes.containers[container]
 	not container.resources.requests.cpu

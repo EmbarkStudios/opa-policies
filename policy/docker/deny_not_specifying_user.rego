@@ -1,7 +1,7 @@
 package docker
 
-import data.lib as l
 import data.docker
+import data.lib as l
 
 check01 := "DOCKER_01"
 

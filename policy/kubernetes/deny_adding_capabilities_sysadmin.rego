@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_08): Do not allow adding capabilities, SYSADMIN
 # Description: This setting enables CAP_SYS_ADMIN linux capability, which is similar to root
@@ -11,8 +11,8 @@ import data.kubernetes
 checks08 := "K8S_08"
 
 exception[rules] {
-    make_exception(check08)
-    rules = ["adding_sysadmin_capabilities"]
+	make_exception(check08)
+	rules = ["adding_sysadmin_capabilities"]
 }
 
 deny_adding_sysadmin_capabilities[msg] {
