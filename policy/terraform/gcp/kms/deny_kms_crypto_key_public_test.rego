@@ -36,7 +36,7 @@ test_allow_valid_kms_crypto_key_iam_member {
                "validUser": {
                    "crypto_key_id": "some-id",
                    "role": "roles/cloudkms.cryptoKeyEncrypter",
-                   "member": "all@embark-studios.com",
+                   "member": "user:jane@example.com",
                },
            }
        }
@@ -79,7 +79,7 @@ test_allow_valid_kms_crypto_key_iam_binding {
                "validUsers": {
                    "crypto_key_id": "some-id",
                    "role": "roles/cloudkms.cryptoKeyEncrypter",
-                   "members": ["all@embark-studios.com"],
+                   "members": ["user:jane@example.com"],
                },
            }
        }

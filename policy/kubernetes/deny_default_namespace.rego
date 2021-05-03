@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_04): Using the default namespace leads to unpredictable behavior
 # Description: Resources in k8s should be segregated using namespaces. 
@@ -11,17 +11,17 @@ import data.kubernetes
 checks04 := "K8S_04"
 
 exception[rules] {
-    make_exception(checks04)
-    rules = ["default_namespace"]
+	make_exception(checks04)
+	rules = ["default_namespace"]
 }
 
 valid_namespace {
-    input.metadata.namespace
-    all([input.metadata.namespace != "default"]) 
+	input.metadata.namespace
+	all([input.metadata.namespace != "default"])
 }
 
 deny_default_namespace[msg] {
-    not any([is_namespace, is_clusterrole, is_clusterrolebinding])
-    not valid_namespace
-    msg = sprintf("%s: the %s %s is using the default namespace. More info: %s", [checks04, kubernetes.kind, kubernetes.name, l.get_url(checks04)])
+	not any([is_namespace, is_clusterrole, is_clusterrolebinding])
+	not valid_namespace
+	msg = sprintf("%s: the %s %s is using the default namespace. More info: %s", [checks04, kubernetes.kind, kubernetes.name, l.get_url(checks04)])
 }

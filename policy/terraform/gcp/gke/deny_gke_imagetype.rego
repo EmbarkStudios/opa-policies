@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check27 := "TF_GCP_27"
@@ -21,5 +22,5 @@ deny_gke_imagetype[msg] {
 
 	gke_imagetype(cluster)
 
-	msg = sprintf("%s: Wrong image_type specified in cluster %s. More info: %s", [check27, cluster.name, get_url(check27)])
+	msg = sprintf("%s: Wrong image_type specified in cluster %s. More info: %s", [check27, cluster.name, l.get_url(check27)])
 }

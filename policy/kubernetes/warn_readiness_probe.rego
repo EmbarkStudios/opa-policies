@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_21): Readiness probes
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check21 := "K8S_21"
 
 exception[rules] {
-    make_exception(check21)
-    rules = ["readiness_probes"]
+	make_exception(check21)
+	rules = ["readiness_probes"]
 }
 
 warn_readiness_probes[msg] {

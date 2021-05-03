@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_08): Set CPU limits
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check08 := "K8S_08"
 
 exception[rules] {
-    make_exception(check08)
-    rules = ["cpu_limits"]
+	make_exception(check08)
+	rules = ["cpu_limits"]
 }
 
 warn_cpu_limits[msg] {

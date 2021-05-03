@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_20): Liveness probes
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check20 := "K8S_20"
 
 exception[rules] {
-    make_exception(check20)
-    rules = ["liveness_probes"]
+	make_exception(check20)
+	rules = ["liveness_probes"]
 }
 
 warn_liveness_probes[msg] {

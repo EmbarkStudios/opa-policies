@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check26 := "TF_GCP_26"
@@ -19,5 +20,5 @@ deny_gke_releasechannel_disabled[msg] {
 
 	gke_releasechannel_disabled(cluster)
 
-	msg = sprintf("%s: release_channel missing or not set to \"REGULAR\" in cluster %s. More info: %s", [check26, cluster.name, get_url(check26)])
+	msg = sprintf("%s: release_channel missing or not set to \"REGULAR\" in cluster %s. More info: %s", [check26, cluster.name, l.get_url(check26)])
 }

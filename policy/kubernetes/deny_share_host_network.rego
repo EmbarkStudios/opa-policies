@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_18):
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check18 := "K8S_18"
 
 exception[rules] {
-    make_exception(check18)
-    rules = ["sharing_host_network"]
+	make_exception(check18)
+	rules = ["sharing_host_network"]
 }
 
 deny_sharing_host_network[msg] {

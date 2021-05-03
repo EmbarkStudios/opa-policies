@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check28 := "TF_GCP_28"
@@ -19,5 +20,5 @@ deny_gke_security_group[msg] {
 
 	gke_security_group(cluster)
 
-	msg = sprintf("%s: Wrong security_group specified in cluster %s. More info: %s", [check28, cluster.name, get_url(check28)])
+	msg = sprintf("%s: Wrong security_group specified in cluster %s. More info: %s", [check28, cluster.name, l.get_url(check28)])
 }

@@ -3,17 +3,20 @@ package kubernetes
 import data.lib as l
 
 name = input.metadata.name
+
 namespace = input.metadata.namespace
 
 kind = input.kind
 
 is_service = kind == "Service"
 
-is_workload = any([kind == "DaemonSet", 
-                   kind == "Deployment",
-                   kind == "StatefulSet",
-                   kind == "ReplicaSet",
-                   kind == "ReplicationController"])
+is_workload = any([
+	kind == "DaemonSet",
+	kind == "Deployment",
+	kind == "StatefulSet",
+	kind == "ReplicaSet",
+	kind == "ReplicationController",
+])
 
 is_pod = kind == "Pod"
 
@@ -74,7 +77,7 @@ added_capability(container, cap) {
 }
 
 make_exception(check) {
-    input.metadata.annotations["embark.dev/opa-k8s"]
+	input.metadata.annotations["embark.dev/opa-k8s"]
 	checks := split(input.metadata.annotations["embark.dev/opa-k8s"], ",")
 	l.contains_element(checks, check)
 }

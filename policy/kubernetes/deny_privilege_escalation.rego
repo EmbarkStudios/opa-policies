@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_01): Do not allow privilege escalation
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check01 := "K8S_01"
 
 exception[rules] {
-    make_exception(check01)
-    rules = ["privilege_escalation_in_containers"]
+	make_exception(check01)
+	rules = ["privilege_escalation_in_containers"]
 }
 
 deny_privilege_escalation_in_containers[msg] {

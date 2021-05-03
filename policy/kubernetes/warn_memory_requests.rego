@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_13): Set Memory requests
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check13 := "K8S_13"
 
 exception[rules] {
-    make_exception(check13)
-    rules = ["memory_requests"]
+	make_exception(check13)
+	rules = ["memory_requests"]
 }
 
 warn_memory_requests[msg] {

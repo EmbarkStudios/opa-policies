@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_17):
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check17 := "K8S_17"
 
 exception[rules] {
-    make_exception(check17)
-    rules = ["sharing_host_pid"]
+	make_exception(check17)
+	rules = ["sharing_host_pid"]
 }
 
 deny_sharing_host_pid[msg] {

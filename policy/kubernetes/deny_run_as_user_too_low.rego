@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_19): 
 # Description: 
@@ -10,8 +10,8 @@ import data.kubernetes
 check19 := "K8S_19"
 
 exception[rules] {
-    make_exception(check19)
-    rules = ["run_as_user_too_low"]
+	make_exception(check19)
+	rules = ["run_as_user_too_low"]
 }
 
 deny_run_as_user_too_low[msg] {

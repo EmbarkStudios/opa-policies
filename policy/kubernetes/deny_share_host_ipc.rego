@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_16):
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check16 := "K8S_16"
 
 exception[rules] {
-    make_exception(check16)
-    rules = ["sharing_host_ipc"]
+	make_exception(check16)
+	rules = ["sharing_host_ipc"]
 }
 
 deny_sharing_host_ipc[msg] {

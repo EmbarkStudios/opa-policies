@@ -1,7 +1,7 @@
 package kubernetes
 
-import data.lib as l
 import data.kubernetes
+import data.lib as l
 
 # DENY(K8S_12): Set Memory limits
 # Description:
@@ -10,8 +10,8 @@ import data.kubernetes
 check12 := "K8S_12"
 
 exception[rules] {
-    make_exception(check12)
-    rules = ["memory_limits"]
+	make_exception(check12)
+	rules = ["memory_limits"]
 }
 
 warn_memory_limits[msg] {
