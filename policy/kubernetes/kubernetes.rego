@@ -13,6 +13,7 @@ is_service = kind == "Service"
 is_workload = any([
 	kind == "DaemonSet",
 	kind == "Deployment",
+	kind == "GameServer",
 	kind == "StatefulSet",
 	kind == "ReplicaSet",
 	kind == "ReplicationController",
