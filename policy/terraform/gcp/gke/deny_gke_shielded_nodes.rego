@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check34 := "TF_GCP_34"
@@ -7,7 +8,7 @@ check34 := "TF_GCP_34"
 gke_shielded_nodes(cluster) {
 	not cluster.enable_shielded_nodes
 } else {
-	is_false(cluster.enable_shielded_nodes)
+	l.is_false(cluster.enable_shielded_nodes)
 }
 
 # DENY(TF_GCP_34) - google_container_cluster
@@ -19,5 +20,5 @@ deny_gke_shielded_nodes[msg] {
 
 	gke_shielded_nodes(cluster)
 
-	msg = sprintf("%s: enabled_shielded_nodes is set to false in cluster %s. More info: %s", [check34, cluster.name, get_url(check34)])
+	msg = sprintf("%s: enabled_shielded_nodes is set to false in cluster %s. More info: %s", [check34, cluster.name, l.get_url(check34)])
 }

@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check29 := "TF_GCP_29"
@@ -7,7 +8,7 @@ check29 := "TF_GCP_29"
 gke_remove_default_node_pool(cluster) {
 	not cluster.remove_default_node_pool
 } else {
-	is_false(cluster.remove_default_node_pool)
+	l.is_false(cluster.remove_default_node_pool)
 }
 
 # DENY(TF_GCP_29) - google_container_cluster
@@ -19,5 +20,5 @@ deny_gke_remove_default_node_pool[msg] {
 
 	gke_remove_default_node_pool(cluster)
 
-	msg = sprintf("%s: remove_default_node_pool is disabled in cluster %s. More info: %s", [check29, cluster.name, get_url(check29)])
+	msg = sprintf("%s: remove_default_node_pool is disabled in cluster %s. More info: %s", [check29, cluster.name, l.get_url(check29)])
 }

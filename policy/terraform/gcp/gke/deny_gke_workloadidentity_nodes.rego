@@ -1,5 +1,6 @@
 package terraform_gcp
 
+import data.lib as l
 import data.terraform
 
 check25 := "TF_GCP_25"
@@ -21,5 +22,5 @@ deny_gke_workloadidentity_nodes_disabled[msg] {
 
 	gke_workloadidentity_nodes_disabled(node_pool)
 
-	msg = sprintf("%s: Workload Identity not enabled for node pool %s in cluster %s. More info: %s", [check25, node_pool.name, node_pool.cluster, get_url(check25)])
+	msg = sprintf("%s: Workload Identity not enabled for node pool %s in cluster %s. More info: %s", [check25, node_pool.name, node_pool.cluster, l.get_url(check25)])
 }
