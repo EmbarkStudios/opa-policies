@@ -2,77 +2,73 @@ package terraform_gcp
 
 import data.testing as t
 
-test_not_deny_workloadidentity_masters {
+test_not_deny_security_group {
     input := {
         "resource": {
             "google_container_cluster": {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "node_config": {
-                        "workload_metadata_config": {
-                          "node_metadata": cluster_node_metadata
-                        }
+                    "authenticator_groups_config": {
+                        "security_group": "gke-security-groups@test.com"
                     }
                 }
             }
         }
     }
 
-    t.no_errors(deny_gke_workloadidentity_masters_disabled) with input as input
+    t.no_errors(deny_gke_security_group) with input as input
 }
 
-test_not_deny_workloadidentity_masters_exclusions {
+test_not_deny_security_group_exclusions {
     input := {
         "resource": {
             "google_container_cluster": {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "//": "TF_GCP_24" 
+                    "//": "TF_GCP_28" 
                 }
             }
         }
     }
 
-    t.no_errors(deny_gke_workloadidentity_masters_disabled) with input as input
+    t.no_errors(deny_gke_security_group) with input as input
 }
 
-test_deny_missing_workloadidentity_masters_config {
+test_deny_missing_security_group_config {
     input := {
         "resource": {
             "google_container_cluster": {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "node_config": {
-                        "workload_metadata_config": {}
+                    "authenticator_groups_config": {
+                        "security_group": {}
                     }
                 }           
             }
         }
     }
 
-    t.error_count(deny_gke_workloadidentity_masters_disabled, 1) with input as input
+    t.error_count(deny_gke_security_group, 1) with input as input
 }
 
-test_deny_workloadidentity_masters_unspecified {
+test_deny_security_group_wrong {
     input := {
         "resource": {
             "google_container_cluster": {
                 "test": {
                     "name": "test",
                     "location": "us-central1",
-                    "node_config": {
-                        "workload_metadata_config": {
-                          "node_metadata": "UNSPECIFIED"
-                        }
+                    "authenticator_groups_config": {
+                        "security_group": "something@evilcorp.com"
                     }
                 }
             }
         }
     }
 
-    t.error_count(deny_gke_workloadidentity_masters_disabled, 1) with input as input
+    t.error_count(deny_gke_security_group, 1) with input as input
 }
 
