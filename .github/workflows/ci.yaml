@@ -1,5 +1,11 @@
-on: push
-name: Validate
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "*"
+  pull_request:
+name: validate
 jobs:
   conftest:
     runs-on: ubuntu-latest
@@ -7,3 +13,29 @@ jobs:
     - uses: actions/checkout@v2
     - name: validate
       uses: ./.github/actions
+  release:
+    name: Release
+    needs: [validate]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+    - name: Package
+      shell: bash
+      run: |
+        name=opa-policies
+        tag=$(git describe --tags --abbrev=0)
+        release_name="$name-$tag"
+        release_tar="${release_name}.tar.gz"
+        mkdir "$release_name"
+        cp "." "$release_name/"
+        cp README.md "$release_name/"
+        tar czvf "$release_tar" "$release_name"
+        rm -r "$release_name"
+        echo -n "$(shasum -ba 256 "${release_tar}" | cut -d " " -f 1)" > "${release_tar}.sha256"
+    - name: Publish
+      uses: softprops/action-gh-release@v1
+      with:
+        draft: true
+        files: "opa-policies*"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
