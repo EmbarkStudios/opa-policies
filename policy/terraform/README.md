@@ -29,9 +29,9 @@
 |TF_GCP_25|DENY|GKE Workload Identity not enabled on nodes in pool|   |
 |TF_GCP_26|DENY|GKE release_channel not set to "REGULAR"|   |
 |TF_GCP_27|DENY|GKE image_type not set to "COS"|   |
-|TF_GCP_28|DENY|GKE secure_boot not set to "gke-security-groups@embark-studios.com"|   |
+|TF_GCP_28|DENY|GKE security_group not set to "gke-security-groups@\<domain\>"|   |
 |TF_GCP_29|DENY|GKE cluster not removing default node pool|   |
-|TF_GCP_32|DENY|GKE enabled_integrity_monitoring nset to false|   |
+|TF_GCP_32|DENY|GKE enabled_integrity_monitoring set to false|   |
 |TF_GCP_34|DENY|GKE shielded_nodes not enabled in cluster |   |
 
 
