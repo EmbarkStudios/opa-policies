@@ -31,8 +31,18 @@
 |TF_GCP_27|DENY|GKE image_type not set to "COS"|   |
 |TF_GCP_28|DENY|GKE security_group not set to "gke-security-groups@\<domain\>"|   |
 |TF_GCP_29|DENY|GKE cluster not removing default node pool|   |
+|TF_GCP_30|DENY|KMS Crypto Key IAM Member allUsers or allAuthenticatedUsers|   |
+|TF_GCP_31|DENY|KMS Crypto Key IAM Binding allUsers or allAuthenticatedUsers|   |
 |TF_GCP_32|DENY|GKE enabled_integrity_monitoring set to false|   |
 |TF_GCP_34|DENY|GKE shielded_nodes not enabled in cluster |   |
+|TF_GCP_35|DENY|KMS Crypto Key rotation longer than 90 days|   |
+|TF_GCP_36|DENY|GCE Instance using the default service account|   |
+|TF_GCP_37|DENY|Folder IAM Member Default service accounts on folder level|   |
+|TF_GCP_38|DENY|Folder IAM Binding Default service accounts on folder level|   |
+|TF_GCP_39|DENY|GCE Instance not using OS Login|   |
+|TF_GCP_40|DENY|Project metadata setting project-wide ssh keys|   |
+|TF_GCP_41|DENY|GKE Nodes running with a default service account|   |
+|TF_GCP_42|DENY|GCE network using auto_create_subnetworks |   |
 
 
 
