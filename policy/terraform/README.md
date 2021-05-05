@@ -33,6 +33,7 @@
 |TF_GCP_29|DENY|GKE cluster not removing default node pool|   |
 |TF_GCP_32|DENY|GKE enabled_integrity_monitoring nset to false|   |
 |TF_GCP_34|DENY|GKE shielded_nodes not enabled in cluster |   |
+|TF_GCP_42|DENY|GCE network using auto_create_subnetworks |   |
 
 
 
