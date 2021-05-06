@@ -44,17 +44,17 @@
 |TF_GCP_41|DENY|GKE Nodes running with a default service account|   |
 |TF_GCP_42|DENY|GCE network using auto_create_subnetworks |   |
 
+## hcl vs json
 
-
-
-
+We are using the `tf.json` format internally (as opposed to `HCL` - `.tf`). All of the Terraform checks are only tested using `tf.json` and while the checks might work making exceptions will probably not work for `.tf` due to us using the `//` [comment property](https://www.terraform.io/docs/configuration/syntax-json.html#comment-properties).
 
 ## Make an exception
 
 If you specify the `//` [comment property](https://www.terraform.io/docs/configuration/syntax-json.html#comment-properties) inside of a resource with the value being a comma separated list of ids you can ignore checks for an asset.
 
 Example
-```
+
+```json
 "resource": {
     "google_storage_bucket": {
         "b3": {
