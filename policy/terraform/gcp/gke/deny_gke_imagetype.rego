@@ -7,20 +7,20 @@ check27 := "TF_GCP_27"
 
 image_type := "COS"
 
-gke_imagetype(cluster) {
-	not cluster.node_config.image_type
+gke_imagetype(node_pool) {
+	not node_pool.node_config.image_type
 } else {
-	cluster.node_config.image_type != image_type
+	node_pool.node_config.image_type != image_type
 }
 
-# DENY(TF_GCP_27) - google_container_cluster
+# DENY(TF_GCP_27) - google_container_node_pool
 deny_gke_imagetype[msg] {
-	input.resource.google_container_cluster
-	cluster := input.resource.google_container_cluster[_]
+	input.resource.google_container_node_pool
+	node_pool := input.resource.google_container_node_pool[_]
 
-	not make_exception(check27, cluster)
+	not make_exception(check27, node_pool)
 
-	gke_imagetype(cluster)
+	gke_imagetype(node_pool)
 
-	msg = sprintf("%s: Wrong image_type specified in cluster %s. More info: %s", [check27, cluster.name, l.get_url(check27)])
+	msg = sprintf("%s: Wrong image_type specified in node_pool %s in cluster %s. More info: %s", [check27, node_pool.name, node_pool.cluster, l.get_url(check27)])
 }

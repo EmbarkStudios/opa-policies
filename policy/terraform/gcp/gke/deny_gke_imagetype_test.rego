@@ -5,9 +5,10 @@ import data.testing as t
 test_not_deny_imagetype {
     input := {
         "resource": {
-            "google_container_cluster": {
+            "google_container_node_pool": {
                 "test": {
                     "name": "test",
+                    "cluster": "cluster1",
                     "location": "us-central1",
                     "node_config": {
                         "image_type": image_type
@@ -23,9 +24,10 @@ test_not_deny_imagetype {
 test_not_deny_imagetype_exclusions {
     input := {
         "resource": {
-            "google_container_cluster": {
+            "google_container_node_pool": {
                 "test": {
                     "name": "test",
+                    "cluster": "cluster1",
                     "location": "us-central1",
                     "//": "TF_GCP_27" 
                 }
@@ -39,9 +41,10 @@ test_not_deny_imagetype_exclusions {
 test_deny_missing_imagetype_config {
     input := {
         "resource": {
-            "google_container_cluster": {
+            "google_container_node_pool": {
                 "test": {
                     "name": "test",
+                    "cluster": "cluster1",                    
                     "location": "us-central1",
                     "node_config": {
                         "image_type": {}
@@ -57,9 +60,10 @@ test_deny_missing_imagetype_config {
 test_deny_imagetype_wrong {
     input := {
         "resource": {
-            "google_container_cluster": {
+            "google_container_node_pool": {
                 "test": {
                     "name": "test",
+                    "cluster": "cluster1",
                     "location": "us-central1",
                     "node_config": {
                         "image_type": "UBUNTU"

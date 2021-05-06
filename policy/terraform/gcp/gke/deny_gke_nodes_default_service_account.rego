@@ -11,18 +11,6 @@ nodes_using_default_svc_acc(gke) {
 	regex.match(default_service_account_regexp, gke.node_config.service_account)
 }
 
-deny_gke_cluster_nodes_default_service_account[msg] {
-	input.resource.google_container_cluster
-
-	cluster := input.resource.google_container_cluster[_]
-
-	not make_exception(check41, cluster)
-
-	nodes_using_default_svc_acc(cluster)
-
-	msg = sprintf("%s: cluster %s is using the default service account. More info: %s", [check41, cluster.name, l.get_url(check41)])
-}
-
 deny_gke_node_pool_nodes_default_service_account[msg] {
 	input.resource.google_container_node_pool
 
