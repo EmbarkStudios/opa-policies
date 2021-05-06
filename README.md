@@ -31,10 +31,10 @@ WORKDIR /app
 USER root
 
 # will fail due to usage of ADD instead of COPY
-ADD app /app 
+ADD app /app
 
 COPY README.md /app/README.md
-RUN sudo apt-get udpate # will fail due to "sudo"
+RUN sudo apt-get update # will fail due to "sudo"
 
 # will fail due to curl/wget bashing
 RUN wget https://some-url.com | sh
@@ -46,7 +46,7 @@ CMD ["/bin/bash", "/app/entrypoint.sh"]
 Running `conftest test ../Dockerfile --namespace docker` will produce the following output given the current rules in [policy/docker](policy/docker):
 ```
 WARN - Dockerfile - Do not use latest tag with image: ["ubuntu:latest"]
-FAIL - Dockerfile - Avoid using 'sudo' command: sudo apt-get udpate
+FAIL - Dockerfile - Avoid using 'sudo' command: sudo apt-get update
 FAIL - Dockerfile - Use COPY instead of ADD: app /app
 FAIL - Dockerfile - Use COPY instead of ADD: code /tmp/code
 FAIL - Dockerfile - Avoid curl/wget bashing
@@ -54,7 +54,7 @@ FAIL - Dockerfile - Avoid curl/wget bashing
 
 ## Contributing
 
-[![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4-ff69b4.svg)](../CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
 We welcome community contributions to this project.
 
