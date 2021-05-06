@@ -27,6 +27,24 @@ is_clusterrole = kind == "ClusterRole"
 
 is_clusterrolebinding = kind == "ClusterRoleBinding"
 
+is_priorityclass = kind == "PriorityClass"
+
+is_persistentvolume = kind == "PersistentVolume"
+
+is_apiservice = kind == "ApiService"
+
+is_customresourcedefinition = kind == "CustomResourceDefinition"
+
+is_storageclass = kind == "StorageClass"
+
+is_csidriver = kind == "CSIDriver"
+
+is_podsecuritypolicy = kind == "PodSecurityPolicy"
+
+is_mutatingwebhookconfig = kind == "MutatingWebhookConfiguration"
+
+is_validatingwebhookconfig = kind == "ValidatingWebhookConfiguration"
+
 is_job = any([kind == "CronJob", kind == "Job"])
 
 split_image(image) = [image_name, lower(tag)] {

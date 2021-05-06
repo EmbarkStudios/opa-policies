@@ -21,7 +21,21 @@ valid_namespace {
 }
 
 deny_default_namespace[msg] {
-	not any([is_namespace, is_clusterrole, is_clusterrolebinding])
+	not any([
+		is_namespace,
+		is_clusterrole,
+		is_clusterrolebinding,
+		is_priorityclass,
+		is_persistentvolume,
+		is_apiservice,
+		is_customresourcedefinition,
+		is_storageclass,
+		is_csidriver,
+		is_mutatingwebhookconfig,
+		is_podsecuritypolicy,
+		is_validatingwebhookconfig,
+	])
+
 	not valid_namespace
 	msg = sprintf("%s: the %s %s is using the default namespace. More info: %s", [checks04, kubernetes.kind, kubernetes.name, l.get_url(checks04)])
 }
