@@ -25,6 +25,7 @@
 |TF_GCP_21|DENY|GKE not using auto_repair|   |
 |TF_GCP_22|DENY|GKE nodes in pool not using secure_boot|   |
 |TF_GCP_23|DENY|GKE masters not using secure_boot|   |
+|TF_GCP_24|DENY|GKE DEPRECATED|   |
 |TF_GCP_25|DENY|GKE Workload Identity not enabled on nodes in pool|   |
 |TF_GCP_26|DENY|GKE release_channel not set to "REGULAR"|   |
 |TF_GCP_27|DENY|GKE image_type not set to "COS"|   |
