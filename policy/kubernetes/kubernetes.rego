@@ -31,7 +31,7 @@ is_priorityclass = kind == "PriorityClass"
 
 is_persistentvolume = kind == "PersistentVolume"
 
-is_apiservice = kind == "ApiService"
+is_apiservice = kind == "APIService"
 
 is_customresourcedefinition = kind == "CustomResourceDefinition"
 

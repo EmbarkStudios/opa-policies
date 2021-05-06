@@ -27,7 +27,7 @@ test_allow_non_namespaced_kinds {
   persistentVolume := {"kind": "PersistentVolume", "metadata": { "name": "test" }}
   t.no_errors(deny_default_namespace) with input as persistentVolume
 
-  apiservice := {"kind": "ApiService", "metadata": { "name": "test" }}
+  apiservice := {"kind": "APIService", "metadata": { "name": "test" }}
   t.no_errors(deny_default_namespace) with input as apiservice
 
   crd := {"kind": "CustomResourceDefinition", "metadata": { "name": "test" }}
