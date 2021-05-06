@@ -17,7 +17,7 @@ We can unit-test our policies. You can find more information on how to write tes
 You can run the tests by executing `conftest verify`
 
 ## Excluding policies
-You can find more information on how to except policies [here](https://www.conftest.dev/exceptions/).
+You can find more information on how to except policies [here](https://www.conftest.dev/exceptions/). You can also find more information in the README under each type in this repository.
 
 
 ## Example usage
