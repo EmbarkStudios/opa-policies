@@ -6,12 +6,28 @@ test_not_deny_imagetype {
     input := {
         "resource": {
             "google_container_node_pool": {
-                "test": {
-                    "name": "test",
+                "cos": {
+                    "name": "cos",
                     "cluster": "cluster1",
                     "location": "us-central1",
                     "node_config": {
-                        "image_type": image_type
+                        "image_type": "cos",
+                    }
+                },
+                "cos_containerd": {
+                    "name": "cos_containerd",
+                    "cluster": "cluster1",
+                    "location": "us-central1",
+                    "node_config": {
+                        "image_type": "cos_containerd",
+                    }
+                },
+                "test_case_insensitive": {
+                    "name": "test_case_insensitive",
+                    "cluster": "cluster1",
+                    "location": "us-central1",
+                    "node_config": {
+                        "image_type": "cOs_CoNtAiNeRd",
                     }
                 }
             }
