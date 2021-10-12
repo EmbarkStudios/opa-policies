@@ -5,12 +5,15 @@ import data.terraform
 
 check27 := "TF_GCP_27"
 
-image_type := "COS"
+allowed_image_types := {"cos", "cos_containerd"}
 
 gke_imagetype(node_pool) {
 	not node_pool.node_config.image_type
 } else {
-	node_pool.node_config.image_type != image_type
+	not is_string(node_pool.node_config.image_type)
+} else {
+	image_type := node_pool.node_config.image_type
+	not l.contains_element(allowed_image_types, lower(image_type))
 }
 
 # DENY(TF_GCP_27) - google_container_node_pool
