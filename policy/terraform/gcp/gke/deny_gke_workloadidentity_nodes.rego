@@ -5,12 +5,18 @@ import data.terraform
 
 check25 := "TF_GCP_25"
 
-pool_node_metadata := "GKE_METADATA_SERVER"
+deprecated_allowed_value := "GKE_METADATA_SERVER"
+new_allowed_value := "GKE_METADATA"
 
 gke_workloadidentity_nodes_disabled(node_pool) {
-	not node_pool.node_config.workload_metadata_config.node_metadata
+	node_pool.node_config.workload_metadata_config.mode
+	node_pool.node_config.workload_metadata_config.mode != new_allowed_value
 } else {
-	node_pool.node_config.workload_metadata_config.node_metadata != pool_node_metadata
+	node_pool.node_config.workload_metadata_config.node_metadata
+	node_pool.node_config.workload_metadata_config.node_metadata != deprecated_allowed_value
+} else {
+	not node_pool.node_config.workload_metadata_config.mode
+	not node_pool.node_config.workload_metadata_config.node_metadata
 }
 
 # DENY(TF_GCP_25) - google_container_node_pool
