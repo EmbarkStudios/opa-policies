@@ -6,12 +6,21 @@ test_not_deny_workloadidentity_nodes {
     input := {
         "resource": {
             "google_container_node_pool": {
-                "test": {
+                "test1": {
                     "cluster": "cluster1",              
-                    "name": "test",
+                    "name": "test1",
                     "node_config": {
                         "workload_metadata_config": {
-                          "node_metadata": pool_node_metadata
+                          "node_metadata": "GKE_METADATA_SERVER",
+                        }
+                    }
+                },
+                "test2": {
+                    "cluster": "cluster2",              
+                    "name": "test2",
+                    "node_config": {
+                        "workload_metadata_config": {
+                          "mode": "GKE_METADATA",
                         }
                     }
                 }
@@ -60,12 +69,21 @@ test_deny_workloadidentity_nodes_unspecified {
     input := {
         "resource": {
             "google_container_node_pool": {
-                "test": {
+                "test1": {
                     "cluster": "cluster1",
-                    "name": "test",
+                    "name": "test1",
                     "node_config": {
                         "workload_metadata_config": {
                           "node_metadata": "UNSPECIFIED"
+                        }
+                    }
+                },
+                "test2": {
+                    "cluster": "cluster2",
+                    "name": "test2",
+                    "node_config": {
+                        "workload_metadata_config": {
+                          "mode": "UNSPECIFIED"
                         }
                     }
                 }
@@ -73,6 +91,6 @@ test_deny_workloadidentity_nodes_unspecified {
         }
     }
 
-    t.error_count(deny_gke_workloadidentity_nodes_disabled, 1) with input as input
+    t.error_count(deny_gke_workloadidentity_nodes_disabled, 2) with input as input
 }
 
