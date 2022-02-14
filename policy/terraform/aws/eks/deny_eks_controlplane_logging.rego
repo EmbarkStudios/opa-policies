@@ -8,7 +8,7 @@ check01 := "TF_AWS_01"
 aws_controlplane_logging_disabled(eks_cluster) {
 	not eks_cluster.enabled_cluster_log_types
 } else { 
-	eks_cluster.enabled_cluster_log_types != ["api", "audit"]
+	eks_cluster.enabled_cluster_log_types != ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 }
 
 # DENY(TF_AWS_01) - aws_eks_cluster
