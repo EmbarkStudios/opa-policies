@@ -44,6 +44,7 @@
 |TF_GCP_41|DENY|GKE Nodes running with a default service account|   |
 |TF_GCP_42|DENY|GCE network using auto_create_subnetworks |   |
 |TF_GCP_43|DENY|IAP IAM not specifying host |   |
+|TF_GCP_44|DENY|IAM `user:` in favor of `group:` and `serviceAccount:` |   |
 
 
 ## hcl vs json
