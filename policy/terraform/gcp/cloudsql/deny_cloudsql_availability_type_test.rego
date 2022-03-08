@@ -50,3 +50,21 @@ test_deny_cloudsql_availability_type_zonal {
 
     t.error_count(deny_cloudsql_availability_type, 1) with input as input
 }
+
+test_not_deny_cloudsql_availability_type_zonal_with_exception {
+    input := {
+        "resource": {
+            "google_sql_database_instance": {
+                "test": {
+                    "//": "TF_GCP_48",
+                    "name": "test",
+                    "settings": {
+                        "availability_type": "ZONAL"
+                    }
+                }
+            }
+        }
+    }
+
+    t.no_errors(deny_cloudsql_availability_type) with input as input
+}
