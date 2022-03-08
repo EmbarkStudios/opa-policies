@@ -6,6 +6,7 @@ import data.terraform
 check25 := "TF_GCP_25"
 
 deprecated_allowed_value := "GKE_METADATA_SERVER"
+
 new_allowed_value := "GKE_METADATA"
 
 gke_workloadidentity_nodes_disabled(node_pool) {

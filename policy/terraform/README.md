@@ -43,6 +43,8 @@
 |TF_GCP_40|DENY|Project metadata setting project-wide ssh keys|   |
 |TF_GCP_41|DENY|GKE Nodes running with a default service account|   |
 |TF_GCP_42|DENY|GCE network using auto_create_subnetworks |   |
+|TF_GCP_43|DENY|IAP IAM not specifying host |   |
+
 
 ## hcl vs json
 
