@@ -46,6 +46,9 @@
 |TF_GCP_43|DENY|IAP IAM not specifying host |   |
 |TF_GCP_44|DENY|IAM `user:` in favor of `group:` and `serviceAccount:` |   |
 |TF_GCP_45|DENY|GKE legacy ABAC enabled |   |
+|TF_GCP_46|DENY|CloudSQL auto backups disabled |   |
+|TF_GCP_47|DENY|CloudSQL disk auto resize disabled |   |
+|TF_GCP_48|DENY|CloudSQL zonal instance, prefer regional |   |
 
 
 ## hcl vs json
