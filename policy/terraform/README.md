@@ -45,6 +45,7 @@
 |TF_GCP_42|DENY|GCE network using auto_create_subnetworks |   |
 |TF_GCP_43|DENY|IAP IAM not specifying host |   |
 |TF_GCP_44|DENY|IAM `user:` in favor of `group:` and `serviceAccount:` |   |
+|TF_GCP_45|DENY|GKE legacy ABAC enabled |   |
 
 
 ## hcl vs json
