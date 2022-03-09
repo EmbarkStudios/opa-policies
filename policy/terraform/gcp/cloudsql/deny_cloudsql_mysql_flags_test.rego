@@ -8,6 +8,7 @@ test_not_deny_cloudsql_mysql_flags {
             "google_sql_database_instance": {
                 "test": {
                     "name": "test",
+                    "database_version": "MYSQL_8_0",
                     "settings": {
                         "database_flags": [
                             {"name": "local_infile", "value": "off"}
@@ -27,6 +28,7 @@ test_deny_cloudsql_mysql_flags_empty {
             "google_sql_database_instance": {
                 "test": {
                     "name": "test",
+                    "database_version": "MYSQL_8_0",
                     "settings": {
                         "database_flags": []
                     }
@@ -44,6 +46,7 @@ test_deny_cloudsql_mysql_flags_no_prop {
             "google_sql_database_instance": {
                 "test": {
                     "name": "test",
+                    "database_version": "MYSQL_8_0",
                     "settings": {
                     }
                 }
@@ -61,6 +64,7 @@ test_not_deny_cloudsql_mysql_flags_when_exception {
             "google_sql_database_instance": {
                 "test": {
                     "name": "test",
+                    "database_version": "MYSQL_8_0",
                     "//": "TF_GCP_53",
                     "settings": {
                         "database_flags": []
@@ -79,6 +83,7 @@ test_deny_cloudsql_mysql_flags_wrong_flag {
             "google_sql_database_instance": {
                 "test": {
                     "name": "test",
+                    "database_version": "MYSQL_8_0",
                     "settings": {
                         "database_flags": [
                             {"name": "not_existing", "value": "off"}
@@ -98,6 +103,7 @@ test_not_deny_cloudsql_mysql_flags_multiple {
             "google_sql_database_instance": {
                 "test": {
                     "name": "test",
+                    "database_version": "MYSQL_8_0",
                     "settings": {
                         "database_flags": [
                             {"name": "local_infile", "value": "off"},

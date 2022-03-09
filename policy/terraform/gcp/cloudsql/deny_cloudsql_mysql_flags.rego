@@ -12,6 +12,7 @@ deny_cloudsql_mysql_flags[msg] {
 	input.resource.google_sql_database_instance
 	instance := input.resource.google_sql_database_instance[i]
 	not make_exception(check53, instance)
+	contains(instance.database_version, "MYSQL")
 	flags := {flag | flag := instance.settings.database_flags[_]}
 	intersect := mysql_expected_flags & flags
 	not count(intersect) == count(mysql_expected_flags)
