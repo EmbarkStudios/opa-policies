@@ -49,6 +49,9 @@
 |TF_GCP_46|DENY|CloudSQL auto backups disabled |   |
 |TF_GCP_47|DENY|CloudSQL disk auto resize disabled |   |
 |TF_GCP_48|DENY|CloudSQL zonal instance, prefer regional |   |
+|TF_GCP_49|DENY|Cloud Memorystore redis without auth |   |
+|TF_GCP_50|DENY|Artifact Registry IAM Binding allUsers or allAuthenticatedUsers |   |
+|TF_GCP_51|DENY|Artifact Registry IAM Member allUsers or allAuthenticatedUsers |   |
 
 
 ## hcl vs json
