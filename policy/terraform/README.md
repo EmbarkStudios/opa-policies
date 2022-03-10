@@ -52,6 +52,7 @@
 |TF_GCP_49|DENY|Cloud Memorystore redis without auth |   |
 |TF_GCP_50|DENY|Artifact Registry IAM Binding allUsers or allAuthenticatedUsers |   |
 |TF_GCP_51|DENY|Artifact Registry IAM Member allUsers or allAuthenticatedUsers |   |
+|TF_GCP_52|DENY|CloudSQL Postgres with no point in time recovery |   |
 
 
 ## hcl vs json
