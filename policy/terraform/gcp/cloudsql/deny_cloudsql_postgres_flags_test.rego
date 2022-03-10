@@ -14,7 +14,9 @@ test_not_deny_cloudsql_postgres_flags {
                             {"name": "log_checkpoints", "value": "on"},
                             {"name": "log_connections", "value": "on"},
                             {"name": "log_disconnections", "value": "on"},
-                            {"name": "log_lock_waits", "value": "on"}
+                            {"name": "log_lock_waits", "value": "on"},
+                            {"name": "log_temp_files", "value": "0"},
+                            {"name": "log_min_duration_statement", "value": "-1"}
                         ]
                     }
                 }
@@ -54,6 +56,8 @@ test_not_deny_cloudsql_postgres_flags_additional_flag {
                             {"name": "log_connections", "value": "on"},
                             {"name": "log_checkpoints", "value": "on"},
                             {"name": "log_lock_waits", "value": "on"},
+                            {"name": "log_temp_files", "value": "0"},
+                            {"name": "log_min_duration_statement", "value": "-1"},
                             {"name": "a_flag", "value": "on"}
                         ]
                     }
