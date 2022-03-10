@@ -54,6 +54,7 @@
 |TF_GCP_51|DENY|Artifact Registry IAM Member allUsers or allAuthenticatedUsers |   |
 |TF_GCP_52|DENY|CloudSQL Postgres with no point in time recovery |   |
 |TF_GCP_53|DENY|CloudSQL MySQL with missing flags |   |
+|TF_GCP_54|DENY|CloudSQL Postgres with missing flags |   |
 
 
 ## hcl vs json
