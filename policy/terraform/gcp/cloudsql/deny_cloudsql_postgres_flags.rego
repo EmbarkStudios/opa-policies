@@ -10,6 +10,8 @@ postgres_expected_flags := {
 	{"name": "log_connections", "value": "on"},
 	{"name": "log_disconnections", "value": "on"},
 	{"name": "log_lock_waits", "value": "on"},
+    {"name": "log_temp_files", "value": "0"},
+    {"name": "log_min_duration_statement", "value":"-1"}
 }
 
 # DENY(TF_GCP_54)
