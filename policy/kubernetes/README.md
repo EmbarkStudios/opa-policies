@@ -6,10 +6,9 @@
 |K8S_02|DENY|Force run as non root|   |
 |K8S_03|DENY|Using latest tag|   |
 |K8S_04|DENY|Using default namespace|   |
-|K8S_05|DENY|Using default service account|   |
-|K8S_06|DENY|Using deprecated service account|   |
-|K8S_07|DENY|Adding SYS_ADMIN capabilities|   |
-|K8S_08|WARN|Missing CPU limits|   |
+|K8S_05|DENY|Adding SYS_ADMIN capabilities|   |
+|K8S_06|DENY|Using default service account|   |
+|K8S_07|DENY|Using deprecated service account|   |
 |K8S_09|WARN|Missing CPU requests|
 |K8S_10|DENY|Allowing mounting Docker socket volume|
 |K8S_11|WARN|Specifying hostPort|
