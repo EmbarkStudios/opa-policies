@@ -9,6 +9,7 @@
 |K8S_05|DENY|Adding SYS_ADMIN capabilities|   |
 |K8S_06|DENY|Using default service account|   |
 |K8S_07|DENY|Using deprecated service account|   |
+|K8S_08|WARN|Missing CPU limits (REMOVED)|
 |K8S_09|WARN|Missing CPU requests|
 |K8S_10|DENY|Allowing mounting Docker socket volume|
 |K8S_11|WARN|Specifying hostPort|
