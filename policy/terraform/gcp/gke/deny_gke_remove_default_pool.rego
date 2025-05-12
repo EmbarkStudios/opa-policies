@@ -1,18 +1,20 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check29 := "TF_GCP_29"
 
-gke_remove_default_node_pool(cluster) {
+gke_remove_default_node_pool(cluster) if {
 	not cluster.remove_default_node_pool
-} else {
+} else if {
 	l.is_false(cluster.remove_default_node_pool)
 }
 
 # DENY(TF_GCP_29) - google_container_cluster
-deny_gke_remove_default_node_pool[msg] {
+deny_gke_remove_default_node_pool contains msg if {
 	input.resource.google_container_cluster
 	cluster := input.resource.google_container_cluster[_]
 

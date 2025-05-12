@@ -1,11 +1,13 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check01 := "TF_GCP_01"
 
-deny_non_uniform_level_access[msg] {
+deny_non_uniform_level_access contains msg if {
 	input.resource.google_storage_bucket
 	bucket := input.resource.google_storage_bucket[k]
 	not make_exception(check01, bucket)

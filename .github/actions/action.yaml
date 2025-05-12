@@ -5,6 +5,6 @@ branding:
   color: "green"
 runs:
   using: 'docker'
-  image: 'docker://openpolicyagent/conftest:v0.24.0'
+  image: 'docker://openpolicyagent/conftest:v0.60.0'
   args:
   - verify

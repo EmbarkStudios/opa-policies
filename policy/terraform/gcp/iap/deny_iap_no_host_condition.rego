@@ -1,18 +1,20 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check43 := "TF_GCP_43"
 
-doesnt_have_host_condition(member) {
+doesnt_have_host_condition(member) if {
 	not member.condition.expression
-} else {
+} else if {
 	not contains(member.condition.expression, "request.host")
 }
 
 # DENY(TF_GCP_43)
-deny_iap_no_host_condition[msg] {
+deny_iap_no_host_condition contains msg if {
 	input.resource.google_iap_web_iam_member
 	member := input.resource.google_iap_web_iam_member[k]
 	not make_exception(check43, member)

@@ -1,9 +1,11 @@
 package docker
 
+import rego.v1
+
 import data.testing as t
 
-test_port_out_of_range {
-	input := [
+test_port_out_of_range if {
+	inp := [
 		{
 			"Cmd": "from",
 			"Flags": [],
@@ -20,5 +22,5 @@ test_port_out_of_range {
 		},
 	]
 
-	t.error_count(deny_port_out_of_range, 1) with input as input
+	t.error_count(deny_port_out_of_range, 1) with input as inp
 }

@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check15 := "TF_GCP_15"
 
 # DENY(TF_GCP_15)
-deny_default_sa_member_on_org_level[msg] {
+deny_default_sa_member_on_org_level contains msg if {
 	input.resource.google_organization_iam_member
 	member := input.resource.google_organization_iam_member[i]
 	regex.match(default_service_account_regexp, member.member)

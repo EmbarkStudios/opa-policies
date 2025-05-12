@@ -1,9 +1,11 @@
 package docker
 
+import rego.v1
+
 import data.testing as t
 
-test_deny_sudo_usage {
-	input := [
+test_deny_sudo_usage if {
+	inp := [
 		{
 			"Cmd": "from",
 			"Flags": [],
@@ -20,5 +22,5 @@ test_deny_sudo_usage {
 		},
 	]
 
-	t.error_count(deny_sudo_usage, 1) with input as input
+	t.error_count(deny_sudo_usage, 1) with input as inp
 }

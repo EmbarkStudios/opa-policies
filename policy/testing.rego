@@ -1,9 +1,11 @@
 package testing
 
-no_errors(target) {
+import rego.v1
+
+no_errors(target) if {
 	count(target) == 0
 }
 
-error_count(target, c) {
+error_count(target, c) if {
 	count(target) == c
 }

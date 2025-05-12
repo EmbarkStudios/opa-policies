@@ -1,5 +1,7 @@
 package kubernetes
 
+import rego.v1
+
 import data.kubernetes
 import data.lib as l
 
@@ -9,12 +11,12 @@ import data.lib as l
 #
 check20 := "K8S_20"
 
-exception[rules] {
+exception contains rules if {
 	make_exception(check20)
 	rules = ["liveness_probes"]
 }
 
-warn_liveness_probes[msg] {
+warn_liveness_probes contains msg if {
 	is_workload
 	kubernetes.containers[container]
 	not container.livenessProbe

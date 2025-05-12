@@ -1,5 +1,7 @@
 package kubernetes
 
+import rego.v1
+
 import data.kubernetes
 import data.lib as l
 
@@ -12,12 +14,12 @@ import data.lib as l
 #
 check11 := "K8S_11"
 
-exception[rules] {
+exception contains rules if {
 	make_exception(check11)
 	rules = ["specify_host_port"]
 }
 
-warn_specify_host_port[msg] {
+warn_specify_host_port contains msg if {
 	kubernetes.containers[container]
 	container.ports[port].hostPort
 

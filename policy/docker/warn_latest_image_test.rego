@@ -1,9 +1,11 @@
 package docker
 
+import rego.v1
+
 import data.testing as t
 
-test_warn_latest_image {
-	input := [
+test_warn_latest_image if {
+	inp := [
 		{
 			"Cmd": "from",
 			"Flags": [],
@@ -27,5 +29,5 @@ test_warn_latest_image {
 		},
 	]
 
-	t.error_count(warn_latest_tag, 1) with input as input
+	t.error_count(warn_latest_tag, 1) with input as inp
 }

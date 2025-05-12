@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check38 := "TF_GCP_38"
 
 # DENY(TF_GCP_38)
-deny_default_sa_binding_on_folder_level[msg] {
+deny_default_sa_binding_on_folder_level contains msg if {
 	input.resource.google_folder_iam_binding
 	binding := input.resource.google_folder_iam_binding[_]
 

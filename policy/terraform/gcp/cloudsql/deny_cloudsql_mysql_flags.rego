@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
@@ -8,7 +10,7 @@ check53 := "TF_GCP_53"
 mysql_expected_flags := {{"name": "local_infile", "value": "off"}}
 
 # DENY(TF_GCP_53)
-deny_cloudsql_mysql_flags[msg] {
+deny_cloudsql_mysql_flags contains msg if {
 	input.resource.google_sql_database_instance
 	instance := input.resource.google_sql_database_instance[i]
 	not make_exception(check53, instance)

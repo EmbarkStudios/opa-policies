@@ -1,20 +1,22 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
-check35 = "TF_GCP_35"
+check35 := "TF_GCP_35"
 
-invalid_rotation_period(key) {
+invalid_rotation_period(key) if {
 	not key.rotation_period
-} else {
+} else if {
 	seconds := trim_right(key.rotation_period, "s")
 
 	# 90 days = 7776000 seconds
 	to_number(seconds) > 7776000
 }
 
-deny_kms_crypto_key_rotation_too_long[msg] {
+deny_kms_crypto_key_rotation_too_long contains msg if {
 	input.resource.google_kms_crypto_key
 
 	key := input.resource.google_kms_crypto_key[_]

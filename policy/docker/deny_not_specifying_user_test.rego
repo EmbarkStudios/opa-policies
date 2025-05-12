@@ -1,9 +1,11 @@
 package docker
 
+import rego.v1
+
 import data.testing as t
 
-test_deny_no_user {
-	input := [
+test_deny_no_user if {
+	inp := [
 		{
 			"Cmd": "from",
 			"Flags": [],
@@ -20,5 +22,5 @@ test_deny_no_user {
 		},
 	]
 
-	t.error_count(deny_no_user, 1) with input as input
+	t.error_count(deny_no_user, 1) with input as inp
 }

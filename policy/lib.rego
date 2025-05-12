@@ -1,29 +1,29 @@
 package lib
 
-has_key(obj, k) {
+import rego.v1
+
+has_key(obj, k) if {
 	_ = obj[k]
 }
 
-is_false(val) {
-	any([val == "false", val == false])
+is_false(val) if {
+	true in [val == "false", val == false]
 }
 
-is_true(val) {
-	any([val == "true", val == true])
+is_true(val) if {
+	true in [val == "true", val == true]
 }
 
-not_existing_or_true(obj, k) {
+not_existing_or_true(obj, k) if {
 	not has_key(obj, k)
-} else {
+} else if {
 	is_true(obj[k])
 }
 
-contains_element(arr, elem) {
+contains_element(arr, elem) if {
 	arr[_] = elem
-} else = false {
-	true
-}
+} else := false
 
-get_url(check) = url {
+get_url(check) := url if {
 	url := sprintf("https://github.com/EmbarkStudios/opa-policies/wiki/%s", [check])
 }

@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check45 := "TF_GCP_45"
 
 # DENY(TF_GCP_45) - google_container_cluster
-deny_gke_legacy_abac[msg] {
+deny_gke_legacy_abac contains msg if {
 	input.resource.google_container_cluster
 	cluster := input.resource.google_container_cluster[_]
 
