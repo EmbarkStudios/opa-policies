@@ -1,18 +1,20 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check26 := "TF_GCP_26"
 
-gke_releasechannel_disabled(cluster) {
+gke_releasechannel_disabled(cluster) if {
 	not cluster.release_channel.channel
-} else {
+} else if {
 	cluster.release_channel.channel != "REGULAR"
 }
 
 # DENY(TF_GCP_26) - google_container_cluster
-deny_gke_releasechannel_disabled[msg] {
+deny_gke_releasechannel_disabled contains msg if {
 	input.resource.google_container_cluster
 	cluster := input.resource.google_container_cluster[_]
 

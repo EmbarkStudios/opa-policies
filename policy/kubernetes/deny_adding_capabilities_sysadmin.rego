@@ -1,5 +1,7 @@
 package kubernetes
 
+import rego.v1
+
 import data.kubernetes
 import data.lib as l
 
@@ -10,12 +12,12 @@ import data.lib as l
 #   https://kubesec.io/basics/containers-securitycontext-capabilities-add-index-sys-admin/
 checks05 := "K8S_05"
 
-exception[rules] {
+exception contains rules if {
 	make_exception(checks05)
 	rules = ["adding_sysadmin_capabilities"]
 }
 
-deny_adding_sysadmin_capabilities[msg] {
+deny_adding_sysadmin_capabilities contains msg if {
 	kubernetes.containers[container]
 	kubernetes.added_capability(container, "CAP_SYS_ADMIN")
 	msg = sprintf("%s: %s in the %s %s has SYS_ADMIN capabilities. More info: %s", [checks05, container.name, kubernetes.kind, kubernetes.name, l.get_url(checks05)])

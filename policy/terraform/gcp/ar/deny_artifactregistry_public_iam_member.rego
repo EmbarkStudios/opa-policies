@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check51 := "TF_GCP_51"
 
 # DENY(TF_GCP_51)
-deny_artifactregistry_public_iam_member[msg] {
+deny_artifactregistry_public_iam_member contains msg if {
 	input.resource.google_artifact_registry_repository_iam_member
 	member := input.resource.google_artifact_registry_repository_iam_member[_]
 	l.contains_element(blacklisted_users, member.member)

@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check09 := "TF_GCP_09"
 
 # DENY(TF_GCP_09)
-deny_dataset_public_iam_binding[msg] {
+deny_dataset_public_iam_binding contains msg if {
 	input.resource.google_bigquery_dataset_iam_binding
 	binding := input.resource.google_bigquery_dataset_iam_binding[k]
 	binding.members[member] == blacklisted_users[user]

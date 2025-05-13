@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check12 := "TF_GCP_12"
 
 # DENY(TF_GCP_12)
-deny_iap_public_member[msg] {
+deny_iap_public_member contains msg if {
 	input.resource.google_iap_web_iam_member
 	member := input.resource.google_iap_web_iam_member[k]
 	l.contains_element(blacklisted_users, member.member)

@@ -1,18 +1,20 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check52 := "TF_GCP_52"
 
-no_pitr(instance) {
+no_pitr(instance) if {
 	not instance.settings.backup_configuration.point_in_time_recovery_enabled
-} else {
+} else if {
 	not l.is_true(instance.settings.backup_configuration.point_in_time_recovery_enabled)
 }
 
 # DENY(TF_GCP_46)
-deny_cloudsql_point_in_time_recovery[msg] {
+deny_cloudsql_point_in_time_recovery contains msg if {
 	input.resource.google_sql_database_instance
 	instance := input.resource.google_sql_database_instance[i]
 	not make_exception(check52, instance)

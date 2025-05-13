@@ -1,19 +1,21 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check39 := "TF_GCP_39"
 
-oslogin_not_enabled(instance) {
+oslogin_not_enabled(instance) if {
 	not instance.metadata["enable-oslogin"]
-} else {
+} else if {
 	oslogin_enabled := instance.metadata["enable-oslogin"]
 	oslogin_enabled != "TRUE"
 }
 
 # DENY(TF_GCP_39)
-deny_compute_instance_oslogin_disabled[msg] {
+deny_compute_instance_oslogin_disabled contains msg if {
 	input.resource.google_compute_instance
 	instance := input.resource.google_compute_instance[_]
 

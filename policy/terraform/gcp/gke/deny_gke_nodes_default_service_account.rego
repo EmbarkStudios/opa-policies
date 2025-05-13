@@ -1,17 +1,19 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
-check41 = "TF_GCP_41"
+check41 := "TF_GCP_41"
 
-nodes_using_default_svc_acc(gke) {
+nodes_using_default_svc_acc(gke) if {
 	not gke.node_config.service_account
-} else {
+} else if {
 	regex.match(default_service_account_regexp, gke.node_config.service_account)
 }
 
-deny_gke_node_pool_nodes_default_service_account[msg] {
+deny_gke_node_pool_nodes_default_service_account contains msg if {
 	input.resource.google_container_node_pool
 
 	node_pool := input.resource.google_container_node_pool[_]

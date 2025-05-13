@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check14 := "TF_GCP_14"
 
 # DENY(TF_GCP_14)
-deny_compute_firewall_unrestricted[msg] {
+deny_compute_firewall_unrestricted contains msg if {
 	input.resource.google_compute_firewall
 	f := input.resource.google_compute_firewall[i]
 	f.allow

@@ -1,18 +1,20 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check22 := "TF_GCP_22"
 
-gke_secureboot_nodes_disabled(node_pool) {
+gke_secureboot_nodes_disabled(node_pool) if {
 	not node_pool.node_config.shielded_instance_config.enable_secure_boot
-} else {
+} else if {
 	l.is_false(node_pool.node_config.shielded_instance_config.enable_secure_boot)
 }
 
 # DENY(TF_GCP_22) - google_container_node_pool
-deny_gke_secureboot_nodes_disabled[msg] {
+deny_gke_secureboot_nodes_disabled contains msg if {
 	input.resource.google_container_node_pool
 	node_pool := input.resource.google_container_node_pool[_]
 

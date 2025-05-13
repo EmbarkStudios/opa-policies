@@ -1,19 +1,21 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check19 := "TF_GCP_19"
 
-gke_autoupgrade_disabled(node_pool) {
+gke_autoupgrade_disabled(node_pool) if {
 	not node_pool.management.auto_upgrade
-} else {
+} else if {
 	au := node_pool.management.auto_upgrade
 	l.is_false(au)
 }
 
 # DENY(TF_GCP_19) - google_container_node_pool
-deny_gke_autoupgrade_disabled[msg] {
+deny_gke_autoupgrade_disabled contains msg if {
 	input.resource.google_container_node_pool
 	node_pool := input.resource.google_container_node_pool[_]
 

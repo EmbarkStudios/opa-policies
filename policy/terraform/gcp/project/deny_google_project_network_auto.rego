@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check06 := "TF_GCP_06"
 
 # DENY(TF_GCP_06)
-deny_project_auto_created_network[msg] {
+deny_project_auto_created_network contains msg if {
 	input.resource.google_project
 	p := input.resource.google_project[_]
 	not make_exception(check06, p)

@@ -1,9 +1,11 @@
 package docker
 
+import rego.v1
+
 import data.testing as t
 
-test_deny_using_add {
-	input := [
+test_deny_using_add if {
+	inp := [
 		{
 			"Cmd": "from",
 			"Flags": [],
@@ -20,5 +22,5 @@ test_deny_using_add {
 		},
 	]
 
-	t.error_count(deny_using_add, 1) with input as input
+	t.error_count(deny_using_add, 1) with input as inp
 }

@@ -1,12 +1,14 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
 check37 := "TF_GCP_37"
 
 # DENY(TF_GCP_37)
-deny_default_sa_member_on_folder_level[msg] {
+deny_default_sa_member_on_folder_level contains msg if {
 	input.resource.google_folder_iam_member
 	member := input.resource.google_folder_iam_member[i]
 

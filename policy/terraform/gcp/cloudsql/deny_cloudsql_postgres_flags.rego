@@ -1,5 +1,7 @@
 package terraform_gcp
 
+import rego.v1
+
 import data.lib as l
 import data.terraform
 
@@ -15,7 +17,7 @@ postgres_expected_flags := {
 }
 
 # DENY(TF_GCP_54)
-deny_cloudsql_postgres_flags[msg] {
+deny_cloudsql_postgres_flags contains msg if {
 	input.resource.google_sql_database_instance
 	instance := input.resource.google_sql_database_instance[i]
 	not make_exception(check54, instance)
