@@ -43,6 +43,7 @@ deny_default_namespace contains msg if {
 		is_mutatingwebhookconfig,
 		is_podsecuritypolicy,
 		is_validatingwebhookconfig,
+		is_computeclass,
 	]
 
 	not valid_namespace

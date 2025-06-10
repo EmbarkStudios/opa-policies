@@ -49,6 +49,8 @@ is_mutatingwebhookconfig := kind == "MutatingWebhookConfiguration"
 
 is_validatingwebhookconfig := kind == "ValidatingWebhookConfiguration"
 
+is_computeclass := kind == "ComputeClass"
+
 is_job if {
 	true in [kind == "CronJob", kind == "Job"]
 }

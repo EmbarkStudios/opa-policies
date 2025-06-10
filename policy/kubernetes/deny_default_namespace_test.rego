@@ -49,4 +49,7 @@ test_allow_non_namespaced_kinds if {
 
 	validatingwebhookconfig := {"kind": "ValidatingWebhookConfiguration", "metadata": {"name": "test"}}
 	t.no_errors(deny_default_namespace) with input as validatingwebhookconfig
+
+	computeclass := {"kind": "ComputeClass", "metadata": {"name": "test"}}
+	t.no_errors(deny_default_namespace) with input as computeclass
 }
